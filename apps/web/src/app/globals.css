@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0b1114;
+  --panel: #121b20;
+  --line: #21313a;
+  --text: #e3eef2;
+  --muted: #86a0ae;
+  --good: #38c172;
+  --bad: #ef5350;
+  --warn: #f0ad4e;
+}
+
+body {
+  background: radial-gradient(circle at 20% 0%, #16232a 0%, #0b1114 45%), var(--bg);
+  color: var(--text);
+}

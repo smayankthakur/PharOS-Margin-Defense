@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "@pharos/shared/*": ["packages/shared/src/*"],
+      "@pharos/shared": ["packages/shared/src/index"],
+      "@pharos/db": ["packages/db/src/index"],
+      "@pharos/ui/*": ["packages/ui/src/*"],
+      "@pharos/ui": ["packages/ui/src/index"]
+    }
+  }
+}
