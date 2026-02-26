@@ -1,5 +1,6 @@
 import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { DEMO_EMAIL, DEMO_PASSWORD } from "@/lib/demo-credentials";
 
 type ApiLoginResponse = {
   token: string;
@@ -19,6 +20,30 @@ type AppUser = {
   apiToken: string;
 };
 
+function resolveApiUrl(): string {
+  if (process.env.API_URL) return process.env.API_URL;
+  if (process.env.NODE_ENV === "development") return "http://localhost:4000";
+  throw new Error("API_URL is missing in production");
+}
+
+async function readErrorMessage(response: Response): Promise<string> {
+  const contentType = response.headers.get("content-type") ?? "";
+  if (contentType.includes("application/json")) {
+    try {
+      const body = (await response.json()) as { message?: string; error?: string };
+      return body.message ?? body.error ?? "request failed";
+    } catch {
+      return "request failed";
+    }
+  }
+  try {
+    const text = await response.text();
+    return text || "request failed";
+  } catch {
+    return "request failed";
+  }
+}
+
 export const authOptions: NextAuthOptions = {
   ...(process.env.NEXTAUTH_SECRET ? { secret: process.env.NEXTAUTH_SECRET } : {}),
   session: { strategy: "jwt" },
@@ -28,28 +53,49 @@ export const authOptions: NextAuthOptions = {
       name: "Credentials",
       credentials: { email: { type: "email" }, password: { type: "password" } },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials.password) return null;
-        const demoAlias = credentials.email === "__DEMO__" && credentials.password === "__DEMO__";
-        const loginEmail = demoAlias ? process.env.DEMO_EMAIL : credentials.email;
-        const loginPassword = demoAlias ? process.env.DEMO_PASSWORD : credentials.password;
-        if (!loginEmail || !loginPassword) return null;
+        if (!credentials?.email || !credentials.password) {
+          throw new Error("missing credentials");
+        }
 
-        const response = await fetch(`${process.env.API_URL}/api/auth/login`, {
+        const apiUrl = resolveApiUrl();
+        const isDemo = credentials.email.toLowerCase() === DEMO_EMAIL.toLowerCase() && credentials.password === DEMO_PASSWORD;
+        const endpoint = isDemo ? "/api/demo/login" : "/api/auth/login";
+
+        const response = await fetch(`${apiUrl}${endpoint}`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: loginEmail, password: loginPassword }),
+          body: JSON.stringify({ email: credentials.email, password: credentials.password }),
         });
 
-        if (!response.ok) return null;
-        const data = (await response.json()) as ApiLoginResponse;
+        if (!response.ok) {
+          const message = await readErrorMessage(response);
+          throw new Error(`auth failed (${response.status}): ${message}`);
+        }
+
+        const data = (await response.json()) as ApiLoginResponse | {
+          ok: boolean;
+          token: string;
+          user: { id: string; role: "OWNER" | "OPS" | "SALES" | "VIEWER"; tenantId: string; email: string };
+        };
+
+        const apiToken = "token" in data ? data.token : "";
+        if (!apiToken) {
+          throw new Error("auth failed: missing token");
+        }
+
+        const sessionShape = "session" in data ? data.session : undefined;
+        const userShape = "user" in data ? data.user : undefined;
 
         const user: AppUser = {
-          id: data.session.userId,
-          email: data.session.email,
-          role: data.session.role,
-          tenantId: data.session.tenantId,
-          apiToken: data.token,
+          id: sessionShape?.userId ?? userShape?.id ?? "",
+          email: sessionShape?.email ?? userShape?.email ?? "",
+          role: sessionShape?.role ?? userShape?.role ?? "VIEWER",
+          tenantId: sessionShape?.tenantId ?? userShape?.tenantId ?? "",
+          apiToken,
         };
+        if (!user.id || !user.email || !user.tenantId) {
+          throw new Error("auth failed: incomplete user payload");
+        }
         return user;
       },
     }),

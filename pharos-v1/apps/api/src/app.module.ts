@@ -10,6 +10,7 @@ import { AlertsController } from "./modules/alerts.controller";
 import { AdminController } from "./modules/admin.controller";
 import { CompetitorsController } from "./modules/competitors.controller";
 import { DealersController } from "./modules/dealers.controller";
+import { DemoController } from "./modules/demo.controller";
 import { HealthController } from "./modules/health.controller";
 import { SalesController } from "./modules/sales.controller";
 import { SkusController } from "./modules/skus.controller";
@@ -30,6 +31,7 @@ import { TasksController } from "./modules/tasks.controller";
     SkusController,
     DealersController,
     CompetitorsController,
+    DemoController,
     SalesController,
     SnapshotsController,
     AlertsController,

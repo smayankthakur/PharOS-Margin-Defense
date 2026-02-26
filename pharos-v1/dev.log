@@ -1,0 +1,669 @@
+
+> pharos-v1@ dev C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1
+> corepack pnpm dev:ports && corepack pnpm dev:infra && corepack pnpm dev:db && corepack pnpm dev:services
+
+
+> pharos-v1@ dev:ports C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1
+> kill-port 3000 4000
+
+Process on port 4000 killed
+Process on port 3000 killed
+
+> pharos-v1@ dev:infra C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1
+> docker compose up -d postgres redis
+
+time="2026-02-26T09:14:08+05:30" level=warning msg="C:\\Users\\Mayank\\OneDrive - Mayank Thakur\\Desktop\\PharOS — Margin Defense\\pharos-v1\\docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+time="2026-02-26T09:14:08+05:30" level=warning msg="No services to build"
+ Container pharos-v1-postgres-1 Running 
+ Container pharos-v1-redis-1 Running 
+
+> pharos-v1@ dev:db C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1
+> corepack pnpm --filter @pharos/db db:push
+
+
+> @pharos/db@1.0.0 db:push C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\packages\db
+> prisma db push
+
+Environment variables loaded from .env
+Prisma schema loaded from prisma\schema.prisma
+Datasource "db": PostgreSQL database "pharos", schema "public" at "localhost:5432"
+
+The database is already in sync with the Prisma schema.
+
+Running generate... (Use --skip-generate to skip the generators)
+[2K[1A[2K[GRunning generate... - Prisma Client
+[2K[1A[2K[G✔ Generated Prisma Client (v5.22.0) to .\..\..\node_modules\.pnpm\@prisma+client
+@5.22.0_prisma@5.22.0\node_modules\@prisma\client in 228ms
+
+
+> pharos-v1@ dev:services C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1
+> concurrently -k -n api,worker,web -c cyan,magenta,green "corepack pnpm dev:api" "corepack pnpm dev:worker" "corepack pnpm dev:web"
+
+[worker] 
+[worker] > pharos-v1@ dev:worker C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1
+[worker] > corepack pnpm --filter @pharos/worker dev
+[worker] 
+[api] 
+[api] > pharos-v1@ dev:api C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1
+[api] > corepack pnpm --filter @pharos/api dev
+[api] 
+[web] 
+[web] > pharos-v1@ dev:web C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1
+[web] > corepack pnpm --filter @pharos/web dev
+[web] 
+[api] 
+[api] > @pharos/api@1.0.0 dev C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\api
+[api] > node -r dotenv/config -r ts-node/register/transpile-only -r tsconfig-paths/register src/main.ts
+[api] 
+[worker] 
+[worker] > @pharos/worker@1.0.0 dev C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker
+[worker] > tsx src/main.ts
+[worker] 
+[web] 
+[web] > @pharos/web@1.0.0 dev C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\web
+[web] > next dev
+[web] 
+[worker] {"level":30,"time":1772077463622,"pid":25908,"hostname":"Mr-Thakur-Skull","msg":"worker started"}
+[web]    ▲ Next.js 15.1.4
+[web]    - Local:        http://localhost:3000
+[web]    - Network:      http://192.168.31.13:3000
+[web]    - Environments: .env.local
+[web] 
+[web]  ✓ Starting...
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[NestFactory] [39m[32mStarting Nest application...[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mJwtModule dependencies initialized[39m[38;5;3m +1ms[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mLoggerModule dependencies initialized[39m[38;5;3m +0ms[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAppModule dependencies initialized[39m[38;5;3m +0ms[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mHealthController {/api/health}:[39m[38;5;3m +0ms[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/health, GET} route[39m[38;5;3m +1ms[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mAuthController {/api/auth}:[39m[38;5;3m +0ms[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/auth/login, POST} route[39m[38;5;3m +0ms[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mSkusController {/api/skus}:[39m[38;5;3m +0ms[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/skus, GET} route[39m[38;5;3m +0ms[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/skus, POST} route[39m[38;5;3m +0ms[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/skus/:id, PATCH} route[39m[38;5;3m +1ms[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/skus/:id, DELETE} route[39m[38;5;3m +0ms[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mDealersController {/api/dealers}:[39m[38;5;3m +0ms[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/dealers, GET} route[39m[38;5;3m +0ms[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/dealers, POST} route[39m[38;5;3m +0ms[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/dealers/:id, PATCH} route[39m[38;5;3m +0ms[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/dealers/:id, DELETE} route[39m[38;5;3m +0ms[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mCompetitorsController {/api/competitors}:[39m[38;5;3m +0ms[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/competitors, GET} route[39m[38;5;3m +0ms[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/competitors, POST} route[39m[38;5;3m +0ms[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/competitors/:id, PATCH} route[39m[38;5;3m +0ms[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/competitors/:id, DELETE} route[39m[38;5;3m +0ms[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mDemoController {/api/demo}:[39m[38;5;3m +0ms[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/demo/seed, POST} route[39m[38;5;3m +0ms[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/demo/login, POST} route[39m[38;5;3m +0ms[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mSalesController {/api/sales}:[39m[38;5;3m +0ms[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/sales/bulk, POST} route[39m[38;5;3m +0ms[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mSnapshotsController {/api/snapshots}:[39m[38;5;3m +1ms[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/snapshots/bulk, POST} route[39m[38;5;3m +0ms[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mAlertsController {/api/alerts}:[39m[38;5;3m +0ms[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/alerts, GET} route[39m[38;5;3m +0ms[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/alerts/:id, GET} route[39m[38;5;3m +0ms[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/alerts/:id, PATCH} route[39m[38;5;3m +0ms[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mTasksController {/api/tasks}:[39m[38;5;3m +0ms[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/tasks, GET} route[39m[38;5;3m +0ms[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/tasks, POST} route[39m[38;5;3m +0ms[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/tasks/:id, PATCH} route[39m[38;5;3m +0ms[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mAdminController {/api/admin}:[39m[38;5;3m +0ms[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/admin/seed, POST} route[39m[38;5;3m +0ms[39m
+[api] [32m[Nest] 18636  - [39m26/02/2026, 9:14:28 am [32m    LOG[39m [38;5;3m[NestApplication] [39m[32mNest application successfully started[39m[38;5;3m +0ms[39m
+[web]  ✓ Ready in 6.4s
+[web]  ○ Compiling /demo ...
+[api] {"level":30,"time":1772077489759,"pid":18636,"hostname":"Mr-Thakur-Skull","req":{"id":"bb27601e-6002-453b-a737-9aa440003c9d","method":"POST","url":"/api/demo/login","query":{},"headers":{"user-agent":"Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.7705","content-type":"application/json","host":"localhost:4000","content-length":"53","expect":"100-continue","connection":"Keep-Alive"},"remoteAddress":"127.0.0.1","remotePort":49573},"res":{"statusCode":401,"headers":{"x-request-id":"bb27601e-6002-453b-a737-9aa440003c9d","content-security-policy":"default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=15552000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":150,"x-ratelimit-remaining":149,"x-ratelimit-reset":60,"content-type":"application/json; charset=utf-8","content-length":"102"}},"responseTime":175,"msg":"request completed"}
+[api] {"level":30,"time":1772077491242,"pid":18636,"hostname":"Mr-Thakur-Skull","req":{"id":"b6c0bafa-91c7-450e-aa71-a8b30e2bbbe4","method":"POST","url":"/api/admin/seed?demo=true","query":{"demo":"true"},"headers":{"host":"localhost:4000","connection":"keep-alive","x-admin-seed-token":"local_seed_token","accept":"*/*","accept-language":"*","sec-fetch-mode":"cors","user-agent":"node","accept-encoding":"gzip, deflate","content-length":"0"},"remoteAddress":"127.0.0.1","remotePort":49578},"res":{"statusCode":201,"headers":{"x-request-id":"b6c0bafa-91c7-450e-aa71-a8b30e2bbbe4","content-security-policy":"default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=15552000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":150,"x-ratelimit-remaining":147,"x-ratelimit-reset":60,"content-type":"application/json; charset=utf-8","content-length":"432"}},"responseTime":1070,"msg":"request completed"}
+[api] {"level":30,"time":1772077491257,"pid":18636,"hostname":"Mr-Thakur-Skull","req":{"id":"7c50af40-c90e-405a-9d3a-627cdd14b16e","method":"POST","url":"/api/demo/seed","query":{},"headers":{"user-agent":"Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.7705","content-type":"application/x-www-form-urlencoded","host":"localhost:4000","content-length":"0","connection":"Keep-Alive"},"remoteAddress":"127.0.0.1","remotePort":49575},"res":{"statusCode":201,"headers":{"x-request-id":"7c50af40-c90e-405a-9d3a-627cdd14b16e","content-security-policy":"default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=15552000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":150,"x-ratelimit-remaining":148,"x-ratelimit-reset":60,"content-type":"application/json; charset=utf-8","content-length":"11"}},"responseTime":1134,"msg":"request completed"}
+[web]  ✓ Compiled /demo in 4s (647 modules)
+[web]  GET /demo 200 in 4008ms
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] {"level":30,"time":1772077500496,"pid":25908,"hostname":"Mr-Thakur-Skull","tenants":2,"msg":"scan complete"}
+[worker] {"level":30,"time":1772077500543,"pid":25908,"hostname":"Mr-Thakur-Skull","msg":"worker job completed"}
+[api] {"level":30,"time":1772077507073,"pid":18636,"hostname":"Mr-Thakur-Skull","req":{"id":"59fc8ae3-18fa-480f-908e-5534dc04f32e","method":"POST","url":"/api/admin/seed?demo=true","query":{"demo":"true"},"headers":{"x-admin-seed-token":"local_seed_token","user-agent":"Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.7705","content-type":"application/x-www-form-urlencoded","host":"localhost:4000","content-length":"0","connection":"Keep-Alive"},"remoteAddress":"127.0.0.1","remotePort":61995},"res":{"statusCode":201,"headers":{"x-request-id":"59fc8ae3-18fa-480f-908e-5534dc04f32e","content-security-policy":"default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=15552000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":150,"x-ratelimit-remaining":146,"x-ratelimit-reset":43,"content-type":"application/json; charset=utf-8","content-length":"432"}},"responseTime":392,"msg":"request completed"}
+[api] {"level":30,"time":1772077520824,"pid":18636,"hostname":"Mr-Thakur-Skull","req":{"id":"6375dec1-ccf7-4641-9d69-66f6a6fe61b9","method":"POST","url":"/api/admin/seed?demo=true","query":{"demo":"true"},"headers":{"host":"localhost:4000","connection":"keep-alive","x-admin-seed-token":"local_seed_token","accept":"*/*","accept-language":"*","sec-fetch-mode":"cors","user-agent":"node","accept-encoding":"gzip, deflate","content-length":"0"},"remoteAddress":"127.0.0.1","remotePort":49578},"res":{"statusCode":201,"headers":{"x-request-id":"6375dec1-ccf7-4641-9d69-66f6a6fe61b9","content-security-policy":"default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=15552000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":150,"x-ratelimit-remaining":144,"x-ratelimit-reset":30,"content-type":"application/json; charset=utf-8","content-length":"432"}},"responseTime":325,"msg":"request completed"}
+[api] {"level":30,"time":1772077520826,"pid":18636,"hostname":"Mr-Thakur-Skull","req":{"id":"95b35658-d3e0-4cf3-86a7-b95531ec2f1b","method":"POST","url":"/api/demo/seed","query":{},"headers":{"user-agent":"Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.7705","content-type":"application/x-www-form-urlencoded","host":"localhost:4000","content-length":"0","connection":"Keep-Alive"},"remoteAddress":"127.0.0.1","remotePort":65298},"res":{"statusCode":201,"headers":{"x-request-id":"95b35658-d3e0-4cf3-86a7-b95531ec2f1b","content-security-policy":"default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=15552000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":150,"x-ratelimit-remaining":145,"x-ratelimit-reset":30,"content-type":"application/json; charset=utf-8","content-length":"11"}},"responseTime":330,"msg":"request completed"}
+[api] {"level":30,"time":1772077520999,"pid":18636,"hostname":"Mr-Thakur-Skull","req":{"id":"c8844bcc-0387-4142-9a04-7626d6aeec10","method":"POST","url":"/api/demo/login","query":{},"headers":{"user-agent":"Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.7705","content-type":"application/json","host":"localhost:4000","content-length":"53"},"remoteAddress":"127.0.0.1","remotePort":65298},"res":{"statusCode":201,"headers":{"x-request-id":"c8844bcc-0387-4142-9a04-7626d6aeec10","content-security-policy":"default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=15552000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":150,"x-ratelimit-remaining":143,"x-ratelimit-reset":29,"content-type":"application/json; charset=utf-8","content-length":"429"}},"responseTime":95,"msg":"request completed"}
+[web]  ✓ Compiled in 2.8s (331 modules)
+[web]  ✓ Compiled in 490ms (331 modules)
+[web]  ✓ Compiled in 196ms (331 modules)
+[web]  ✓ Compiled in 702ms (331 modules)
+[web]  ✓ Compiled in 422ms (331 modules)
+[web]  ✓ Compiled in 299ms (331 modules)
+[web]  ○ Compiling /demo ...
+[web]  ✓ Compiled /demo in 648ms (330 modules)
+[web]  GET /demo 200 in 1686ms
+[web]  ○ Compiling /_not-found ...
+[web]  ✓ Compiled /_not-found in 1446ms (651 modules)
+[web]  GET /.well-known/appspecific/com.chrome.devtools.json 404 in 1822ms
+[web]  ○ Compiling /api/auth/[...nextauth] ...
+[web]  ✓ Compiled /api/auth/[...nextauth] in 1314ms (890 modules)
+[web]  GET /api/auth/session 200 in 3164ms
+[api] {"level":30,"time":1772077942442,"pid":18636,"hostname":"Mr-Thakur-Skull","req":{"id":"aaaf70d8-1306-4a60-a7e6-c2f8b36b853b","method":"GET","url":"/api/health","query":{},"headers":{"host":"localhost:4000","connection":"keep-alive","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36","sec-ch-ua":"\"Not:A-Brand\";v=\"99\", \"Google Chrome\";v=\"145\", \"Chromium\";v=\"145\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:3000","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:3000/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9,hi;q=0.8"},"remoteAddress":"127.0.0.1","remotePort":59477},"res":{"statusCode":200,"headers":{"x-request-id":"aaaf70d8-1306-4a60-a7e6-c2f8b36b853b","content-security-policy":"default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=15552000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","vary":"Origin","access-control-allow-origin":"http://localhost:3000","access-control-allow-credentials":"true","x-ratelimit-limit":150,"x-ratelimit-remaining":149,"x-ratelimit-reset":60,"content-type":"application/json; charset=utf-8","content-length":"11"}},"responseTime":2,"msg":"request completed"}
+[api] {"level":30,"time":1772077942857,"pid":18636,"hostname":"Mr-Thakur-Skull","req":{"id":"0e26555a-d282-4427-a661-b675622068d4","method":"POST","url":"/api/admin/seed?demo=true","query":{"demo":"true"},"headers":{"host":"localhost:4000","connection":"keep-alive","x-admin-seed-token":"local_seed_token","accept":"*/*","accept-language":"*","sec-fetch-mode":"cors","user-agent":"node","accept-encoding":"gzip, deflate","content-length":"0"},"remoteAddress":"127.0.0.1","remotePort":59479},"res":{"statusCode":201,"headers":{"x-request-id":"0e26555a-d282-4427-a661-b675622068d4","content-security-policy":"default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=15552000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":150,"x-ratelimit-remaining":147,"x-ratelimit-reset":60,"content-type":"application/json; charset=utf-8","content-length":"432"}},"responseTime":402,"msg":"request completed"}
+[api] {"level":30,"time":1772077942859,"pid":18636,"hostname":"Mr-Thakur-Skull","req":{"id":"454da336-c662-47aa-95fa-349866bf2567","method":"POST","url":"/api/demo/seed?demo=true","query":{"demo":"true"},"headers":{"host":"localhost:4000","connection":"keep-alive","content-length":"0","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36","sec-ch-ua":"\"Not:A-Brand\";v=\"99\", \"Google Chrome\";v=\"145\", \"Chromium\";v=\"145\"","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:3000","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:3000/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9,hi;q=0.8"},"remoteAddress":"127.0.0.1","remotePort":59477},"res":{"statusCode":201,"headers":{"x-request-id":"454da336-c662-47aa-95fa-349866bf2567","content-security-policy":"default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=15552000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","vary":"Origin","access-control-allow-origin":"http://localhost:3000","access-control-allow-credentials":"true","x-ratelimit-limit":150,"x-ratelimit-remaining":148,"x-ratelimit-reset":60,"content-type":"application/json; charset=utf-8","content-length":"11"}},"responseTime":412,"msg":"request completed"}
+[api] {"level":30,"time":1772077942867,"pid":18636,"hostname":"Mr-Thakur-Skull","req":{"id":"cea549e1-c491-4f29-804f-eb04a9368b61","method":"OPTIONS","url":"/api/demo/login","query":{},"headers":{"host":"localhost:4000","connection":"keep-alive","accept":"*/*","access-control-request-method":"POST","access-control-request-headers":"content-type","origin":"http://localhost:3000","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36","sec-fetch-mode":"cors","sec-fetch-site":"same-site","sec-fetch-dest":"empty","referer":"http://localhost:3000/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9,hi;q=0.8"},"remoteAddress":"127.0.0.1","remotePort":59477},"res":{"statusCode":204,"headers":{"x-request-id":"cea549e1-c491-4f29-804f-eb04a9368b61","content-security-policy":"default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=15552000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","vary":"Origin, Access-Control-Request-Headers","access-control-allow-origin":"http://localhost:3000","access-control-allow-credentials":"true","access-control-allow-methods":"GET,HEAD,PUT,PATCH,POST,DELETE","access-control-allow-headers":"content-type","content-length":"0"}},"responseTime":2,"msg":"request completed"}
+[api] {"level":30,"time":1772077942974,"pid":18636,"hostname":"Mr-Thakur-Skull","req":{"id":"6d6c115a-bc04-47f3-a6de-41757cb3a004","method":"POST","url":"/api/demo/login","query":{},"headers":{"host":"localhost:4000","connection":"keep-alive","content-length":"53","sec-ch-ua-platform":"\"Windows\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36","sec-ch-ua":"\"Not:A-Brand\";v=\"99\", \"Google Chrome\";v=\"145\", \"Chromium\";v=\"145\"","content-type":"application/json","sec-ch-ua-mobile":"?0","accept":"*/*","origin":"http://localhost:3000","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:3000/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9,hi;q=0.8"},"remoteAddress":"127.0.0.1","remotePort":59477},"res":{"statusCode":201,"headers":{"x-request-id":"6d6c115a-bc04-47f3-a6de-41757cb3a004","content-security-policy":"default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=15552000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","vary":"Origin","access-control-allow-origin":"http://localhost:3000","access-control-allow-credentials":"true","x-ratelimit-limit":150,"x-ratelimit-remaining":146,"x-ratelimit-reset":60,"content-type":"application/json; charset=utf-8","content-length":"429"}},"responseTime":105,"msg":"request completed"}
+[web]  GET /api/auth/providers 200 in 33ms
+[web]  GET /api/auth/csrf 200 in 18ms
+[api] {"level":30,"time":1772077943249,"pid":18636,"hostname":"Mr-Thakur-Skull","req":{"id":"518da7f8-ceee-4067-9abd-474442fda1a9","method":"POST","url":"/api/demo/login","query":{},"headers":{"host":"localhost:4000","connection":"keep-alive","content-type":"application/json","accept":"*/*","accept-language":"*","sec-fetch-mode":"cors","user-agent":"node","accept-encoding":"gzip, deflate","content-length":"53"},"remoteAddress":"127.0.0.1","remotePort":62059},"res":{"statusCode":201,"headers":{"x-request-id":"518da7f8-ceee-4067-9abd-474442fda1a9","content-security-policy":"default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=15552000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":150,"x-ratelimit-remaining":145,"x-ratelimit-reset":60,"content-type":"application/json; charset=utf-8","content-length":"429"}},"responseTime":133,"msg":"request completed"}
+[web]  POST /api/auth/callback/credentials 200 in 207ms
+[web]  ○ Compiling /src/middleware ...
+[web]  ✓ Compiled /src/middleware in 1859ms (197 modules)
+[web]  ○ Compiling /app/dashboard ...
+[web]  ✓ Compiled /app/dashboard in 2.1s (924 modules)
+[api] {"level":30,"time":1772077948508,"pid":18636,"hostname":"Mr-Thakur-Skull","req":{"id":"4ff4f8ab-748c-4d1f-9aa7-5089673d1667","method":"GET","url":"/api/alerts?range=30d","query":{"range":"30d"},"headers":{"host":"localhost:4000","connection":"keep-alive","content-type":"application/json","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbW0yeDZtd3YwMDAyNXEyZXptdWdzb3E3IiwidGVuYW50SWQiOiJjbW0yeDZtZjMwMDAwNXEyZW9jNTd6NnFiIiwicm9sZSI6Ik9XTkVSIiwiZW1haWwiOiJkZW1vQHBoYXJvcy5sb2NhbCIsImlhdCI6MTc3MjA3Nzk0MywiZXhwIjoxNzcyMTY0MzQzfQ.ximHvL3-YyNpEpqH1rbAHle3cvBiFpx6PN86jcleNns","accept":"*/*","accept-language":"*","sec-fetch-mode":"cors","user-agent":"node","pragma":"no-cache","cache-control":"no-cache","accept-encoding":"gzip, deflate"},"remoteAddress":"127.0.0.1","remotePort":62059},"res":{"statusCode":200,"headers":{"x-request-id":"4ff4f8ab-748c-4d1f-9aa7-5089673d1667","content-security-policy":"default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=15552000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":150,"x-ratelimit-remaining":144,"x-ratelimit-reset":54,"content-type":"application/json; charset=utf-8","content-length":"22674"}},"responseTime":64,"msg":"request completed"}
+[api] {"level":30,"time":1772077948607,"pid":18636,"hostname":"Mr-Thakur-Skull","req":{"id":"6d78619f-25b3-4c77-b533-57fecfcf82d6","method":"GET","url":"/api/alerts?status=OPEN&range=30d","query":{"status":"OPEN","range":"30d"},"headers":{"host":"localhost:4000","connection":"keep-alive","content-type":"application/json","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbW0yeDZtd3YwMDAyNXEyZXptdWdzb3E3IiwidGVuYW50SWQiOiJjbW0yeDZtZjMwMDAwNXEyZW9jNTd6NnFiIiwicm9sZSI6Ik9XTkVSIiwiZW1haWwiOiJkZW1vQHBoYXJvcy5sb2NhbCIsImlhdCI6MTc3MjA3Nzk0MywiZXhwIjoxNzcyMTY0MzQzfQ.ximHvL3-YyNpEpqH1rbAHle3cvBiFpx6PN86jcleNns","accept":"*/*","accept-language":"*","sec-fetch-mode":"cors","user-agent":"node","pragma":"no-cache","cache-control":"no-cache","accept-encoding":"gzip, deflate"},"remoteAddress":"127.0.0.1","remotePort":62304},"res":{"statusCode":200,"headers":{"x-request-id":"6d78619f-25b3-4c77-b533-57fecfcf82d6","content-security-policy":"default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=15552000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":150,"x-ratelimit-remaining":143,"x-ratelimit-reset":54,"content-type":"application/json; charset=utf-8","content-length":"22674"}},"responseTime":29,"msg":"request completed"}
+[api] {"level":30,"time":1772077948645,"pid":18636,"hostname":"Mr-Thakur-Skull","req":{"id":"f7d7a2aa-8ce1-4cac-af2a-91627d5748e2","method":"GET","url":"/api/tasks?mine=true","query":{"mine":"true"},"headers":{"host":"localhost:4000","connection":"keep-alive","content-type":"application/json","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbW0yeDZtd3YwMDAyNXEyZXptdWdzb3E3IiwidGVuYW50SWQiOiJjbW0yeDZtZjMwMDAwNXEyZW9jNTd6NnFiIiwicm9sZSI6Ik9XTkVSIiwiZW1haWwiOiJkZW1vQHBoYXJvcy5sb2NhbCIsImlhdCI6MTc3MjA3Nzk0MywiZXhwIjoxNzcyMTY0MzQzfQ.ximHvL3-YyNpEpqH1rbAHle3cvBiFpx6PN86jcleNns","accept":"*/*","accept-language":"*","sec-fetch-mode":"cors","user-agent":"node","pragma":"no-cache","cache-control":"no-cache","accept-encoding":"gzip, deflate"},"remoteAddress":"127.0.0.1","remotePort":62305},"res":{"statusCode":200,"headers":{"x-request-id":"f7d7a2aa-8ce1-4cac-af2a-91627d5748e2","content-security-policy":"default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=15552000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":150,"x-ratelimit-remaining":142,"x-ratelimit-reset":54,"content-type":"application/json; charset=utf-8","content-length":"2"}},"responseTime":59,"msg":"request completed"}
+[web]  GET /.well-known/appspecific/com.chrome.devtools.json 404 in 285ms
+[web]  GET /app/dashboard 200 in 3427ms
+[web]  ○ Compiling /app/alerts ...
+[web]  ✓ Compiled /app/alerts in 1232ms (922 modules)
+[api] {"level":30,"time":1772078009162,"pid":18636,"hostname":"Mr-Thakur-Skull","req":{"id":"578569f6-fb2c-4404-b515-7af3ecad60c9","method":"GET","url":"/api/alerts?range=30d&limit=20&offset=0","query":{"range":"30d","limit":"20","offset":"0"},"headers":{"host":"localhost:4000","connection":"keep-alive","content-type":"application/json","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbW0yeDZtd3YwMDAyNXEyZXptdWdzb3E3IiwidGVuYW50SWQiOiJjbW0yeDZtZjMwMDAwNXEyZW9jNTd6NnFiIiwicm9sZSI6Ik9XTkVSIiwiZW1haWwiOiJkZW1vQHBoYXJvcy5sb2NhbCIsImlhdCI6MTc3MjA3Nzk0MywiZXhwIjoxNzcyMTY0MzQzfQ.ximHvL3-YyNpEpqH1rbAHle3cvBiFpx6PN86jcleNns","accept":"*/*","accept-language":"*","sec-fetch-mode":"cors","user-agent":"node","pragma":"no-cache","cache-control":"no-cache","accept-encoding":"gzip, deflate"},"remoteAddress":"127.0.0.1","remotePort":62059},"res":{"statusCode":200,"headers":{"x-request-id":"578569f6-fb2c-4404-b515-7af3ecad60c9","content-security-policy":"default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=15552000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":150,"x-ratelimit-remaining":149,"x-ratelimit-reset":60,"content-type":"application/json; charset=utf-8","content-length":"22674"}},"responseTime":24,"msg":"request completed"}
+[web]  GET /.well-known/appspecific/com.chrome.devtools.json 404 in 367ms
+[web]  GET /app/alerts 200 in 3325ms
+[web]  ○ Compiling /app/tasks ...
+[web]  ✓ Compiled /app/tasks in 1023ms (925 modules)
+[api] {"level":30,"time":1772078020283,"pid":18636,"hostname":"Mr-Thakur-Skull","req":{"id":"ff41a263-c815-4ffa-a7e1-d2be43c24d0a","method":"GET","url":"/api/tasks?mine=true","query":{"mine":"true"},"headers":{"host":"localhost:4000","connection":"keep-alive","content-type":"application/json","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbW0yeDZtd3YwMDAyNXEyZXptdWdzb3E3IiwidGVuYW50SWQiOiJjbW0yeDZtZjMwMDAwNXEyZW9jNTd6NnFiIiwicm9sZSI6Ik9XTkVSIiwiZW1haWwiOiJkZW1vQHBoYXJvcy5sb2NhbCIsImlhdCI6MTc3MjA3Nzk0MywiZXhwIjoxNzcyMTY0MzQzfQ.ximHvL3-YyNpEpqH1rbAHle3cvBiFpx6PN86jcleNns","accept":"*/*","accept-language":"*","sec-fetch-mode":"cors","user-agent":"node","pragma":"no-cache","cache-control":"no-cache","accept-encoding":"gzip, deflate"},"remoteAddress":"127.0.0.1","remotePort":62059},"res":{"statusCode":200,"headers":{"x-request-id":"ff41a263-c815-4ffa-a7e1-d2be43c24d0a","content-security-policy":"default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=15552000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":150,"x-ratelimit-remaining":148,"x-ratelimit-reset":49,"content-type":"application/json; charset=utf-8","content-length":"2"}},"responseTime":27,"msg":"request completed"}
+[api] {"level":30,"time":1772078020500,"pid":18636,"hostname":"Mr-Thakur-Skull","req":{"id":"92e05f52-d118-48af-bc40-40f6e70fac75","method":"GET","url":"/api/alerts?status=OPEN&range=30d","query":{"status":"OPEN","range":"30d"},"headers":{"host":"localhost:4000","connection":"keep-alive","content-type":"application/json","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbW0yeDZtd3YwMDAyNXEyZXptdWdzb3E3IiwidGVuYW50SWQiOiJjbW0yeDZtZjMwMDAwNXEyZW9jNTd6NnFiIiwicm9sZSI6Ik9XTkVSIiwiZW1haWwiOiJkZW1vQHBoYXJvcy5sb2NhbCIsImlhdCI6MTc3MjA3Nzk0MywiZXhwIjoxNzcyMTY0MzQzfQ.ximHvL3-YyNpEpqH1rbAHle3cvBiFpx6PN86jcleNns","accept":"*/*","accept-language":"*","sec-fetch-mode":"cors","user-agent":"node","pragma":"no-cache","cache-control":"no-cache","accept-encoding":"gzip, deflate"},"remoteAddress":"127.0.0.1","remotePort":62580},"res":{"statusCode":200,"headers":{"x-request-id":"92e05f52-d118-48af-bc40-40f6e70fac75","content-security-policy":"default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=15552000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":150,"x-ratelimit-remaining":147,"x-ratelimit-reset":49,"content-type":"application/json; charset=utf-8","content-length":"22674"}},"responseTime":21,"msg":"request completed"}
+[web]  GET /.well-known/appspecific/com.chrome.devtools.json 404 in 191ms
+[web]  GET /app/tasks 200 in 2185ms
+[api] {"level":30,"time":1772078045766,"pid":18636,"hostname":"Mr-Thakur-Skull","req":{"id":"4a3f749d-1fcd-4777-bb22-078c09c59434","method":"GET","url":"/api/tasks?mine=false","query":{"mine":"false"},"headers":{"host":"localhost:4000","connection":"keep-alive","content-type":"application/json","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbW0yeDZtd3YwMDAyNXEyZXptdWdzb3E3IiwidGVuYW50SWQiOiJjbW0yeDZtZjMwMDAwNXEyZW9jNTd6NnFiIiwicm9sZSI6Ik9XTkVSIiwiZW1haWwiOiJkZW1vQHBoYXJvcy5sb2NhbCIsImlhdCI6MTc3MjA3Nzk0MywiZXhwIjoxNzcyMTY0MzQzfQ.ximHvL3-YyNpEpqH1rbAHle3cvBiFpx6PN86jcleNns","accept":"*/*","accept-language":"*","sec-fetch-mode":"cors","user-agent":"node","pragma":"no-cache","cache-control":"no-cache","accept-encoding":"gzip, deflate"},"remoteAddress":"127.0.0.1","remotePort":62059},"res":{"statusCode":200,"headers":{"x-request-id":"4a3f749d-1fcd-4777-bb22-078c09c59434","content-security-policy":"default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=15552000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":150,"x-ratelimit-remaining":146,"x-ratelimit-reset":24,"content-type":"application/json; charset=utf-8","content-length":"2"}},"responseTime":19,"msg":"request completed"}
+[api] {"level":30,"time":1772078045849,"pid":18636,"hostname":"Mr-Thakur-Skull","req":{"id":"201d83b3-add1-436c-a406-0844ca1995b1","method":"GET","url":"/api/alerts?status=OPEN&range=30d","query":{"status":"OPEN","range":"30d"},"headers":{"host":"localhost:4000","connection":"keep-alive","content-type":"application/json","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbW0yeDZtd3YwMDAyNXEyZXptdWdzb3E3IiwidGVuYW50SWQiOiJjbW0yeDZtZjMwMDAwNXEyZW9jNTd6NnFiIiwicm9sZSI6Ik9XTkVSIiwiZW1haWwiOiJkZW1vQHBoYXJvcy5sb2NhbCIsImlhdCI6MTc3MjA3Nzk0MywiZXhwIjoxNzcyMTY0MzQzfQ.ximHvL3-YyNpEpqH1rbAHle3cvBiFpx6PN86jcleNns","accept":"*/*","accept-language":"*","sec-fetch-mode":"cors","user-agent":"node","pragma":"no-cache","cache-control":"no-cache","accept-encoding":"gzip, deflate"},"remoteAddress":"127.0.0.1","remotePort":62580},"res":{"statusCode":200,"headers":{"x-request-id":"201d83b3-add1-436c-a406-0844ca1995b1","content-security-policy":"default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=15552000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":150,"x-ratelimit-remaining":145,"x-ratelimit-reset":24,"content-type":"application/json; charset=utf-8","content-length":"22674"}},"responseTime":16,"msg":"request completed"}
+[web]  GET /.well-known/appspecific/com.chrome.devtools.json 404 in 134ms
+[web]  GET /app/tasks?mine=false 200 in 495ms
+[api] {"level":30,"time":1772078047708,"pid":18636,"hostname":"Mr-Thakur-Skull","req":{"id":"a3178363-a214-42c2-9e6d-d2255d3002f3","method":"GET","url":"/api/tasks?mine=true","query":{"mine":"true"},"headers":{"host":"localhost:4000","connection":"keep-alive","content-type":"application/json","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbW0yeDZtd3YwMDAyNXEyZXptdWdzb3E3IiwidGVuYW50SWQiOiJjbW0yeDZtZjMwMDAwNXEyZW9jNTd6NnFiIiwicm9sZSI6Ik9XTkVSIiwiZW1haWwiOiJkZW1vQHBoYXJvcy5sb2NhbCIsImlhdCI6MTc3MjA3Nzk0MywiZXhwIjoxNzcyMTY0MzQzfQ.ximHvL3-YyNpEpqH1rbAHle3cvBiFpx6PN86jcleNns","accept":"*/*","accept-language":"*","sec-fetch-mode":"cors","user-agent":"node","pragma":"no-cache","cache-control":"no-cache","accept-encoding":"gzip, deflate"},"remoteAddress":"127.0.0.1","remotePort":62059},"res":{"statusCode":200,"headers":{"x-request-id":"a3178363-a214-42c2-9e6d-d2255d3002f3","content-security-policy":"default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=15552000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":150,"x-ratelimit-remaining":144,"x-ratelimit-reset":22,"content-type":"application/json; charset=utf-8","content-length":"2"}},"responseTime":8,"msg":"request completed"}
+[api] {"level":30,"time":1772078047779,"pid":18636,"hostname":"Mr-Thakur-Skull","req":{"id":"f3f6077b-e968-4fbb-836b-1e2dc648b2d2","method":"GET","url":"/api/alerts?status=OPEN&range=30d","query":{"status":"OPEN","range":"30d"},"headers":{"host":"localhost:4000","connection":"keep-alive","content-type":"application/json","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbW0yeDZtd3YwMDAyNXEyZXptdWdzb3E3IiwidGVuYW50SWQiOiJjbW0yeDZtZjMwMDAwNXEyZW9jNTd6NnFiIiwicm9sZSI6Ik9XTkVSIiwiZW1haWwiOiJkZW1vQHBoYXJvcy5sb2NhbCIsImlhdCI6MTc3MjA3Nzk0MywiZXhwIjoxNzcyMTY0MzQzfQ.ximHvL3-YyNpEpqH1rbAHle3cvBiFpx6PN86jcleNns","accept":"*/*","accept-language":"*","sec-fetch-mode":"cors","user-agent":"node","pragma":"no-cache","cache-control":"no-cache","accept-encoding":"gzip, deflate"},"remoteAddress":"127.0.0.1","remotePort":62580},"res":{"statusCode":200,"headers":{"x-request-id":"f3f6077b-e968-4fbb-836b-1e2dc648b2d2","content-security-policy":"default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=15552000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":150,"x-ratelimit-remaining":143,"x-ratelimit-reset":22,"content-type":"application/json; charset=utf-8","content-length":"22674"}},"responseTime":69,"msg":"request completed"}
+[web]  GET /.well-known/appspecific/com.chrome.devtools.json 404 in 149ms
+[web]  GET /app/tasks?mine=true 200 in 492ms
+[api] {"level":30,"time":1772078077913,"pid":18636,"hostname":"Mr-Thakur-Skull","req":{"id":"0d3fabf8-4a49-4c9f-9682-e521ad2b082e","method":"GET","url":"/api/alerts?range=30d","query":{"range":"30d"},"headers":{"host":"localhost:4000","connection":"keep-alive","content-type":"application/json","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbW0yeDZtd3YwMDAyNXEyZXptdWdzb3E3IiwidGVuYW50SWQiOiJjbW0yeDZtZjMwMDAwNXEyZW9jNTd6NnFiIiwicm9sZSI6Ik9XTkVSIiwiZW1haWwiOiJkZW1vQHBoYXJvcy5sb2NhbCIsImlhdCI6MTc3MjA3Nzk0MywiZXhwIjoxNzcyMTY0MzQzfQ.ximHvL3-YyNpEpqH1rbAHle3cvBiFpx6PN86jcleNns","accept":"*/*","accept-language":"*","sec-fetch-mode":"cors","user-agent":"node","pragma":"no-cache","cache-control":"no-cache","accept-encoding":"gzip, deflate"},"remoteAddress":"127.0.0.1","remotePort":62059},"res":{"statusCode":200,"headers":{"x-request-id":"0d3fabf8-4a49-4c9f-9682-e521ad2b082e","content-security-policy":"default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=15552000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":150,"x-ratelimit-remaining":149,"x-ratelimit-reset":60,"content-type":"application/json; charset=utf-8","content-length":"22674"}},"responseTime":83,"msg":"request completed"}
+[api] {"level":30,"time":1772078078048,"pid":18636,"hostname":"Mr-Thakur-Skull","req":{"id":"c7bee71c-e398-4799-9362-27190a172dda","method":"GET","url":"/api/alerts?status=OPEN&range=30d","query":{"status":"OPEN","range":"30d"},"headers":{"host":"localhost:4000","connection":"keep-alive","content-type":"application/json","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbW0yeDZtd3YwMDAyNXEyZXptdWdzb3E3IiwidGVuYW50SWQiOiJjbW0yeDZtZjMwMDAwNXEyZW9jNTd6NnFiIiwicm9sZSI6Ik9XTkVSIiwiZW1haWwiOiJkZW1vQHBoYXJvcy5sb2NhbCIsImlhdCI6MTc3MjA3Nzk0MywiZXhwIjoxNzcyMTY0MzQzfQ.ximHvL3-YyNpEpqH1rbAHle3cvBiFpx6PN86jcleNns","accept":"*/*","accept-language":"*","sec-fetch-mode":"cors","user-agent":"node","pragma":"no-cache","cache-control":"no-cache","accept-encoding":"gzip, deflate"},"remoteAddress":"127.0.0.1","remotePort":62580},"res":{"statusCode":200,"headers":{"x-request-id":"c7bee71c-e398-4799-9362-27190a172dda","content-security-policy":"default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=15552000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":150,"x-ratelimit-remaining":148,"x-ratelimit-reset":60,"content-type":"application/json; charset=utf-8","content-length":"22674"}},"responseTime":146,"msg":"request completed"}
+[api] {"level":30,"time":1772078078114,"pid":18636,"hostname":"Mr-Thakur-Skull","req":{"id":"7b41584f-8e85-44c2-864f-119848756f1d","method":"GET","url":"/api/tasks?mine=true","query":{"mine":"true"},"headers":{"host":"localhost:4000","connection":"keep-alive","content-type":"application/json","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbW0yeDZtd3YwMDAyNXEyZXptdWdzb3E3IiwidGVuYW50SWQiOiJjbW0yeDZtZjMwMDAwNXEyZW9jNTd6NnFiIiwicm9sZSI6Ik9XTkVSIiwiZW1haWwiOiJkZW1vQHBoYXJvcy5sb2NhbCIsImlhdCI6MTc3MjA3Nzk0MywiZXhwIjoxNzcyMTY0MzQzfQ.ximHvL3-YyNpEpqH1rbAHle3cvBiFpx6PN86jcleNns","accept":"*/*","accept-language":"*","sec-fetch-mode":"cors","user-agent":"node","pragma":"no-cache","cache-control":"no-cache","accept-encoding":"gzip, deflate"},"remoteAddress":"127.0.0.1","remotePort":61054},"res":{"statusCode":200,"headers":{"x-request-id":"7b41584f-8e85-44c2-864f-119848756f1d","content-security-policy":"default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=15552000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":150,"x-ratelimit-remaining":147,"x-ratelimit-reset":60,"content-type":"application/json; charset=utf-8","content-length":"2"}},"responseTime":13,"msg":"request completed"}
+[web]  GET /.well-known/appspecific/com.chrome.devtools.json 404 in 148ms
+[web]  GET /app/dashboard 200 in 637ms

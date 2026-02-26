@@ -31,7 +31,13 @@ docker compose up -d
 ```
 
 3. Copy envs:
-- Copy `.env.example` to `.env` (or per app examples).
+- Copy app env examples:
+```bash
+cp apps/web/.env.local.example apps/web/.env.local
+cp apps/api/.env.example apps/api/.env
+cp apps/worker/.env.example apps/worker/.env
+```
+- `.env.local` is gitignored; do not commit secrets.
 
 4. Generate/migrate DB:
 ```bash

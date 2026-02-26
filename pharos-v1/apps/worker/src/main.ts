@@ -1,3 +1,5 @@
+import "dotenv/config";
+
 import { AlertType, Prisma, prisma } from "@pharos/db";
 import {
   deadStockValue,

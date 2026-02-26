@@ -12,6 +12,7 @@
     "test": "echo no-tests",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev --name init",
+    "db:push": "prisma db push",
     "db:deploy": "prisma migrate deploy"
   },
   "dependencies": {

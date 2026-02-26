@@ -19,7 +19,9 @@ export class JwtAuthGuard implements CanActivate {
     if (
       url.includes("/api/health") ||
       (req.method === "POST" && url.includes("/api/auth/login")) ||
-      (req.method === "POST" && url.includes("/api/admin/seed"))
+      (req.method === "POST" && url.includes("/api/admin/seed")) ||
+      (req.method === "POST" && url.includes("/api/demo/seed")) ||
+      (req.method === "POST" && url.includes("/api/demo/login"))
     ) {
       return true;
     }

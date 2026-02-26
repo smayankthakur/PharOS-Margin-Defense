@@ -8,7 +8,10 @@ export class AuthService {
   constructor(private readonly jwtService: JwtService) {}
 
   async login(email: string, password: string): Promise<{ token: string; session: { userId: string; tenantId: string; role: string; email: string } }> {
-    const user = await prisma.user.findFirst({ where: { email } });
+    const isDemoLogin = email.toLowerCase() === "demo@pharos.local";
+    const user = await prisma.user.findFirst({
+      where: isDemoLogin ? { email, tenant: { slug: "demo" } } : { email },
+    });
     if (!user) throw new UnauthorizedException("Invalid credentials");
 
     const ok = await argon2.verify(user.passwordHash, password);

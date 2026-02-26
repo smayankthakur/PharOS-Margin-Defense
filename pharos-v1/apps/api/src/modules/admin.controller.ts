@@ -15,14 +15,14 @@ export class AdminController {
     }
 
     const tenant = await prisma.tenant.upsert({
-      where: { slug: "demo-tenant" },
+      where: { slug: "demo" },
       update: { name: "PharOS Demo Tenant" },
-      create: { slug: "demo-tenant", name: "PharOS Demo Tenant" },
+      create: { slug: "demo", name: "PharOS Demo Tenant" },
     });
 
-    const passHash = await argon2.hash("password123");
+    const passHash = await argon2.hash("Demo@12345");
     const users = [
-      { email: "owner@demo.pharos", role: Role.OWNER },
+      { email: "demo@pharos.local", role: Role.OWNER },
       { email: "ops@demo.pharos", role: Role.OPS },
       { email: "sales@demo.pharos", role: Role.SALES },
       { email: "viewer@demo.pharos", role: Role.VIEWER },
@@ -117,7 +117,7 @@ export class AdminController {
       ok: true,
       tenantId: tenant.id,
       seeded: { skus: 3, dealers: 2, competitor: 1, sales: 15, snapshots: 15, alertsCreated: createdAlerts },
-      credentials: users.map((u) => ({ email: u.email, password: "password123", role: u.role })),
+      credentials: users.map((u) => ({ email: u.email, password: "Demo@12345", role: u.role })),
     };
   }
 }

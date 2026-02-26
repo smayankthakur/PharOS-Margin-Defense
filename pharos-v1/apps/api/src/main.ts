@@ -27,10 +27,10 @@ async function bootstrap(): Promise<void> {
     ...(redisEnabled ? { redis: process.env.REDIS_URL } : {}),
   });
 
-  app.use((req: { headers: Record<string, string | string[] | undefined>; id?: string }, res: { header: (name: string, value: string) => void }, next: () => void) => {
+  app.use((req: { headers: Record<string, string | string[] | undefined>; id?: string }, res: { setHeader: (name: string, value: string) => void }, next: () => void) => {
     const headerId = req.headers["x-request-id"];
     req.id = typeof headerId === "string" ? headerId : randomUUID();
-    res.header("x-request-id", req.id);
+    res.setHeader("x-request-id", req.id);
     next();
   });
 
