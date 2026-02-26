@@ -3,12 +3,24 @@ import { randomUUID } from "node:crypto";
 import cors from "@fastify/cors";
 import helmet from "@fastify/helmet";
 import rateLimit from "@fastify/rate-limit";
+import { prisma } from "@pharos/db";
 import { ValidationPipe } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 import { FastifyAdapter, NestFastifyApplication } from "@nestjs/platform-fastify";
 import pino from "pino";
 import { AppModule } from "./app.module";
 import { apiEnv } from "./env";
+
+function maskDatabaseUrl(databaseUrl: string): string {
+  try {
+    const parsed = new URL(databaseUrl);
+    if (parsed.password) parsed.password = "****";
+    if (parsed.username) parsed.username = "****";
+    return parsed.toString();
+  } catch {
+    return "<masked>";
+  }
+}
 
 async function bootstrap(): Promise<void> {
   const logger = pino({ level: apiEnv.LOG_LEVEL });
@@ -20,6 +32,22 @@ async function bootstrap(): Promise<void> {
     logger.fatal({ err: error }, "uncaughtException");
     process.exit(1);
   });
+
+  logger.info(
+    {
+      nodeEnv: apiEnv.NODE_ENV,
+      databaseUrl: maskDatabaseUrl(apiEnv.DATABASE_URL),
+      migrationMode: "prisma migrate deploy (render start command)",
+    },
+    "api boot config",
+  );
+
+  try {
+    await prisma.$queryRaw`SELECT 1`;
+  } catch (error) {
+    logger.fatal({ err: error }, "database connectivity check failed");
+    process.exit(1);
+  }
 
   const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter(), {
     bufferLogs: true,

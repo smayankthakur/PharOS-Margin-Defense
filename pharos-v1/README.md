@@ -78,7 +78,7 @@ corepack pnpm db:seed
 - Build command:
   - `corepack enable && corepack pnpm install --frozen-lockfile && corepack pnpm --filter @pharos/db db:generate && corepack pnpm --filter @pharos/api build`
 - Start command:
-  - `corepack pnpm --filter @pharos/api start`
+  - `corepack pnpm --filter @pharos/db db:migrate && corepack pnpm --filter @pharos/api start`
 - Required env vars:
   - `NODE_ENV=production`
   - `PORT` (provided by Render)
@@ -98,6 +98,7 @@ corepack pnpm db:seed
   - `corepack enable && corepack pnpm install --frozen-lockfile && corepack pnpm --filter @pharos/db db:generate && corepack pnpm --filter @pharos/worker build`
 - Start command:
   - `corepack pnpm --filter @pharos/worker start`
+- First production setup: deploy API before worker.
 - Required env vars:
   - `NODE_ENV=production`
   - `DATABASE_URL`
@@ -112,12 +113,16 @@ corepack pnpm db:seed
 corepack pnpm db:migrate
 ```
 
-- Production (Render release command or manual):
-```bash
-corepack pnpm --filter @pharos/db db:deploy
-```
+## Production Migration Behavior
 
-Migrations are forward-only.
+- On every API deploy, `prisma migrate deploy` runs before API start.
+- Migrations are forward-only and safe for repeated deploys (shows no-op when nothing pending).
+- Worker does not run migrations and should be deployed after API on first production setup.
+
+Manual fallback:
+```bash
+corepack pnpm --filter @pharos/db db:migrate
+```
 
 ## Smoke Test Checklist
 

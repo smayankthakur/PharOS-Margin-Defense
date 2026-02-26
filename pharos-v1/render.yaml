@@ -6,7 +6,7 @@ services:
     autoDeploy: true
     rootDir: .
     buildCommand: corepack enable && corepack pnpm install --frozen-lockfile && corepack pnpm --filter @pharos/db db:generate && corepack pnpm --filter @pharos/api build
-    startCommand: corepack pnpm --filter @pharos/api start
+    startCommand: corepack pnpm --filter @pharos/db db:migrate && corepack pnpm --filter @pharos/api start
     healthCheckPath: /health
     envVars:
       - key: NODE_ENV
