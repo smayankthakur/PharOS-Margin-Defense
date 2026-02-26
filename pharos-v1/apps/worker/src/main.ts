@@ -11,8 +11,9 @@ import {
 import { Queue, Worker } from "bullmq";
 import IORedis from "ioredis";
 import pino from "pino";
+import { workerEnv } from "./env";
 
-const logger = pino({ level: process.env.LOG_LEVEL ?? "info" });
+const logger = pino({ level: workerEnv.LOG_LEVEL });
 
 const dayKey = (date: Date): string => date.toISOString().slice(0, 10);
 
@@ -52,6 +53,7 @@ async function tryCreateAlert(payload: {
 }
 
 async function runForTenant(tenantId: string): Promise<void> {
+  logger.info({ tenantId }, "scan tenant started");
   const now = new Date();
   const salesSince = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
   const sales = await prisma.saleRow.findMany({
@@ -161,6 +163,7 @@ async function runForTenant(tenantId: string): Promise<void> {
       });
     }
   }
+  logger.info({ tenantId }, "scan tenant completed");
 }
 
 async function runScan(): Promise<void> {
@@ -172,9 +175,21 @@ async function runScan(): Promise<void> {
 }
 
 async function start(): Promise<void> {
-  const redisUrl = process.env.REDIS_URL;
+  process.on("unhandledRejection", (reason) => {
+    logger.fatal({ err: reason }, "unhandledRejection");
+    process.exit(1);
+  });
+  process.on("uncaughtException", (error) => {
+    logger.fatal({ err: error }, "uncaughtException");
+    process.exit(1);
+  });
+
+  const redisUrl = workerEnv.REDIS_URL;
 
   if (!redisUrl) {
+    if (workerEnv.NODE_ENV === "production") {
+      throw new Error("REDIS_URL is required in production");
+    }
     logger.warn("REDIS_URL missing: local fallback interval enabled");
     await runScan();
     setInterval(() => {
@@ -193,14 +208,16 @@ async function start(): Promise<void> {
 
   const worker = new Worker(
     "pharos-alerts",
-    async () => {
+    async (job) => {
+      logger.info({ jobId: job.id }, "worker job started");
       await runScan();
+      logger.info({ jobId: job.id }, "worker job finished");
     },
     { connection },
   );
 
-  worker.on("failed", (_job, err) => logger.error({ err }, "worker job failed"));
-  worker.on("completed", () => logger.info("worker job completed"));
+  worker.on("failed", (job, err) => logger.error({ err, jobId: job?.id }, "worker job failed"));
+  worker.on("completed", (job) => logger.info({ jobId: job.id }, "worker job completed"));
 
   logger.info("worker started");
 }

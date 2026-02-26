@@ -1,6 +1,7 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { authOptions } from "@/lib/auth-options";
+import { getServerEnv } from "@/env";
 
 export async function requireSession() {
   const session = await getServerSession(authOptions);
@@ -12,7 +13,7 @@ export async function requireSession() {
 
 export async function apiFetch(path: string, init?: RequestInit) {
   const session = await requireSession();
-  const response = await fetch(`${process.env.API_URL}/api${path}`, {
+  const response = await fetch(`${getServerEnv().API_URL}/api${path}`, {
     ...init,
     headers: {
       "Content-Type": "application/json",

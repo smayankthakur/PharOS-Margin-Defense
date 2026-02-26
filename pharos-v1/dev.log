@@ -667,3 +667,987 @@ Running generate... (Use --skip-generate to skip the generators)
 [api] {"level":30,"time":1772078078114,"pid":18636,"hostname":"Mr-Thakur-Skull","req":{"id":"7b41584f-8e85-44c2-864f-119848756f1d","method":"GET","url":"/api/tasks?mine=true","query":{"mine":"true"},"headers":{"host":"localhost:4000","connection":"keep-alive","content-type":"application/json","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbW0yeDZtd3YwMDAyNXEyZXptdWdzb3E3IiwidGVuYW50SWQiOiJjbW0yeDZtZjMwMDAwNXEyZW9jNTd6NnFiIiwicm9sZSI6Ik9XTkVSIiwiZW1haWwiOiJkZW1vQHBoYXJvcy5sb2NhbCIsImlhdCI6MTc3MjA3Nzk0MywiZXhwIjoxNzcyMTY0MzQzfQ.ximHvL3-YyNpEpqH1rbAHle3cvBiFpx6PN86jcleNns","accept":"*/*","accept-language":"*","sec-fetch-mode":"cors","user-agent":"node","pragma":"no-cache","cache-control":"no-cache","accept-encoding":"gzip, deflate"},"remoteAddress":"127.0.0.1","remotePort":61054},"res":{"statusCode":200,"headers":{"x-request-id":"7b41584f-8e85-44c2-864f-119848756f1d","content-security-policy":"default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=15552000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":150,"x-ratelimit-remaining":147,"x-ratelimit-reset":60,"content-type":"application/json; charset=utf-8","content-length":"2"}},"responseTime":13,"msg":"request completed"}
 [web]  GET /.well-known/appspecific/com.chrome.devtools.json 404 in 148ms
 [web]  GET /app/dashboard 200 in 637ms
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation in
+[worker] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\worker\src\main.ts:35:24
+[worker] 
+[worker]   32 }): Promise<void> {
+[worker]   33   try {
+[worker]   34     const evidenceJson = payload.evidenceJson as Prisma.InputJsonObject;
+[worker] → 35     await prisma.alert.create(
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] {"level":30,"time":1772078400688,"pid":25908,"hostname":"Mr-Thakur-Skull","tenants":2,"msg":"scan complete"}
+[worker] {"level":30,"time":1772078400691,"pid":25908,"hostname":"Mr-Thakur-Skull","msg":"worker job completed"}
+[web]  ✓ Compiled in 1694ms (332 modules)
+[web]  ✓ Compiled in 415ms (332 modules)
+[web]  GET /app/dashboard 200 in 124ms
+[web]  GET /app/dashboard 200 in 57ms
+[web]  ⨯ ./src/env.ts:1:1
+[web] Module not found: Can't resolve 'zod'
+[web] > 1 | import { z } from "zod";
+[web]     | ^
+[web]   2 |
+[web]   3 | const nodeEnv = process.env.NODE_ENV ?? "development";
+[web]   4 |
+[web] 
+[web] https://nextjs.org/docs/messages/module-not-found
+[web] 
+[web] Import trace for requested module:
+[web] ./src/lib/auth-options.ts
+[web] ./src/app/app/layout.tsx
+[web]  ○ Compiling /_not-found ...
+[web]  ⨯ ./src/env.ts:1:1
+[web] Module not found: Can't resolve 'zod'
+[web] > 1 | import { z } from "zod";
+[web]     | ^
+[web]   2 |
+[web]   3 | const nodeEnv = process.env.NODE_ENV ?? "development";
+[web]   4 |
+[web] 
+[web] https://nextjs.org/docs/messages/module-not-found
+[web] 
+[web] Import trace for requested module:
+[web] ./src/lib/auth-options.ts
+[web] ./src/app/app/layout.tsx
+[web]  GET /app/dashboard 500 in 10313ms
+[web]  GET /_next/static/webpack/9ab8e43f10afd55a.webpack.hot-update.json 500 in 8813ms
+[web]  ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[web]  GET /app/dashboard 500 in 37ms
+[web]  GET /app/dashboard 500 in 28ms
+[web]  GET /.well-known/appspecific/com.chrome.devtools.json 500 in 12ms
+[web]  ⨯ ./src/env.ts:1:1
+[web] Module not found: Can't resolve 'zod'
+[web] > 1 | import { z } from "zod";
+[web]     | ^
+[web]   2 |
+[web]   3 | const nodeEnv = process.env.NODE_ENV ?? "development";
+[web]   4 |
+[web] 
+[web] https://nextjs.org/docs/messages/module-not-found
+[web] 
+[web] Import trace for requested module:
+[web] ./src/lib/auth-options.ts
+[web] ./src/app/app/layout.tsx
+[web]  GET /_next/static/webpack/0169a71006f3d29a.webpack.hot-update.json 500 in 21ms
+[web]  ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[web]  GET /app/dashboard 500 in 35ms
+[web]  GET /.well-known/appspecific/com.chrome.devtools.json 500 in 10ms
+[web]  ⨯ ./src/env.ts:1:1
+[web] Module not found: Can't resolve 'zod'
+[web] > 1 | import { z } from "zod";
+[web]     | ^
+[web]   2 |
+[web]   3 | const nodeEnv = process.env.NODE_ENV ?? "development";
+[web]   4 |
+[web] 
+[web] https://nextjs.org/docs/messages/module-not-found
+[web] 
+[web] Import trace for requested module:
+[web] ./src/app/app/dashboard/page.tsx
+[web]  GET /_next/static/webpack/0169a71006f3d29a.webpack.hot-update.json 500 in 23ms
+[web]  ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[web]  GET /app/dashboard 500 in 29ms
+[web]  GET /.well-known/appspecific/com.chrome.devtools.json 500 in 16ms
+[web]  ✓ Compiled /_error in 496ms (532 modules)
+[web]  GET /app/dashboard 500 in 33ms
+[web]  GET /.well-known/appspecific/com.chrome.devtools.json 500 in 12ms
+[web]  ✓ Compiled in 378ms (532 modules)
+[web]  GET /app/dashboard 500 in 124ms
+[web]  GET /.well-known/appspecific/com.chrome.devtools.json 500 in 17ms
+[web]  ⨯ ./src/env.ts:1:1
+[web] Module not found: Can't resolve 'zod'
+[web] > 1 | import { z } from "zod";
+[web]     | ^
+[web]   2 |
+[web]   3 | const nodeEnv = process.env.NODE_ENV ?? "development";
+[web]   4 |
+[web] 
+[web] https://nextjs.org/docs/messages/module-not-found
+[web] 
+[web] Import trace for requested module:
+[web] ./src/app/app/dashboard/page.tsx
+[web]  GET /_next/static/webpack/0169a71006f3d29a.webpack.hot-update.json 500 in 30ms
+[web]  ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[web]  GET /app/dashboard 500 in 26ms
+[web]  GET /.well-known/appspecific/com.chrome.devtools.json 500 in 14ms
+[web]  ✓ Compiled in 1044ms (530 modules)
+[web]  GET /app/dashboard 500 in 66ms
+[web]  GET /.well-known/appspecific/com.chrome.devtools.json 500 in 15ms
+[web]  ✓ Compiled in 1205ms (530 modules)
+[web]  ✓ Compiled in 367ms (530 modules)
+[web]  GET /app/dashboard 500 in 28ms
+[web]  GET /.well-known/appspecific/com.chrome.devtools.json 500 in 17ms
+[web]  ✓ Compiled in 2.2s (530 modules)
+[web]  ✓ Compiled in 573ms (530 modules)
+[web]  GET /app/dashboard 500 in 55ms
+[web]  GET /.well-known/appspecific/com.chrome.devtools.json 500 in 19ms
+[web]  ⨯ ./src/env.ts:1:1
+[web] Module not found: Can't resolve 'zod'
+[web] > 1 | import { z } from "zod";
+[web]     | ^
+[web]   2 |
+[web]   3 | const nodeEnv = process.env.NODE_ENV ?? "development";
+[web]   4 |
+[web] 
+[web] https://nextjs.org/docs/messages/module-not-found
+[web] 
+[web] Import trace for requested module:
+[web] ./src/app/app/dashboard/page.tsx
+[web]  GET /_next/static/webpack/0169a71006f3d29a.webpack.hot-update.json 500 in 18ms
+[web]  ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[web]  GET /app/dashboard 500 in 40ms
+[web]  GET /.well-known/appspecific/com.chrome.devtools.json 500 in 12ms
+[web]  ⨯ ./src/env.ts:1:1
+[web] Module not found: Can't resolve 'zod'
+[web] > 1 | import { z } from "zod";
+[web]     | ^
+[web]   2 |
+[web]   3 | const nodeEnv = process.env.NODE_ENV ?? "development";
+[web]   4 |
+[web] 
+[web] https://nextjs.org/docs/messages/module-not-found
+[web] 
+[web] Import trace for requested module:
+[web] ./src/app/app/dashboard/page.tsx
+[web]  GET /_next/static/webpack/0169a71006f3d29a.webpack.hot-update.json 500 in 11ms
+[web]  ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[web]  GET /app/dashboard 500 in 27ms
+[web]  GET /.well-known/appspecific/com.chrome.devtools.json 500 in 10ms
+[web]  ⨯ ./src/env.ts:1:1
+[web] Module not found: Can't resolve 'zod'
+[web] > 1 | import { z } from "zod";
+[web]     | ^
+[web]   2 |
+[web]   3 | const nodeEnv = process.env.NODE_ENV ?? "development";
+[web]   4 |
+[web] 
+[web] https://nextjs.org/docs/messages/module-not-found
+[web] 
+[web] Import trace for requested module:
+[web] ./src/app/app/dashboard/page.tsx
+[web]  ○ Compiling /_not-found ...
+[web]  ⨯ ./src/env.ts:1:1
+[web] Module not found: Can't resolve 'zod'
+[web] > 1 | import { z } from "zod";
+[web]     | ^
+[web]   2 |
+[web]   3 | const nodeEnv = process.env.NODE_ENV ?? "development";
+[web]   4 |
+[web] 
+[web] https://nextjs.org/docs/messages/module-not-found
+[web] 
+[web] Import trace for requested module:
+[web] ./src/app/app/dashboard/page.tsx
+[web]  ⨯ ./src/env.ts:1:1
+[web] Module not found: Can't resolve 'zod'
+[web] > 1 | import { z } from "zod";
+[web]     | ^
+[web]   2 |
+[web]   3 | const nodeEnv = process.env.NODE_ENV ?? "development";
+[web]   4 |
+[web] 
+[web] https://nextjs.org/docs/messages/module-not-found
+[web] 
+[web] Import trace for requested module:
+[web] ./src/app/app/dashboard/page.tsx
+[web]  GET /_next/static/webpack/0169a71006f3d29a.webpack.hot-update.json 500 in 1933ms
+[web]  ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[web]  GET /app/dashboard 500 in 25ms
+[web]  GET /.well-known/appspecific/com.chrome.devtools.json 500 in 15ms
+[web]  ⨯ ./src/env.ts:1:1
+[web] Module not found: Can't resolve 'zod'
+[web] > 1 | import { z } from "zod";
+[web]     | ^
+[web]   2 |
+[web]   3 | const nodeEnv = process.env.NODE_ENV ?? "development";
+[web]   4 |
+[web] 
+[web] https://nextjs.org/docs/messages/module-not-found
+[web] 
+[web] Import trace for requested module:
+[web] ./src/middleware.ts
+[web]  GET /app/dashboard 500 in 40ms
+[web]  GET /.well-known/appspecific/com.chrome.devtools.json 500 in 12ms
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] prisma:error 
+[worker] Invalid `prisma.alert.create()` invocation:
+[worker] 
+[worker] 
+[worker] Unique constraint failed on the fields: (`tenantId`,`dedupeKey`)
+[worker] {"level":30,"time":1772079302811,"pid":25908,"hostname":"Mr-Thakur-Skull","tenants":2,"msg":"scan complete"}
+[worker] {"level":30,"time":1772079302814,"pid":25908,"hostname":"Mr-Thakur-Skull","msg":"worker job completed"}
+[api] {"level":30,"time":1772079444146,"pid":18636,"hostname":"Mr-Thakur-Skull","req":{"id":"3f02cb1e-fe82-44d4-a3bb-793e8e24bbd2","method":"GET","url":"/api/health","query":{},"headers":{"host":"localhost:4000","connection":"keep-alive","accept":"*/*","accept-language":"*","sec-fetch-mode":"cors","user-agent":"node","accept-encoding":"gzip, deflate"},"remoteAddress":"127.0.0.1","remotePort":65101},"res":{"statusCode":200,"headers":{"x-request-id":"3f02cb1e-fe82-44d4-a3bb-793e8e24bbd2","content-security-policy":"default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=15552000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":150,"x-ratelimit-remaining":149,"x-ratelimit-reset":60,"content-type":"application/json; charset=utf-8","content-length":"11"}},"responseTime":12,"msg":"request completed"}
+[api] {"level":30,"time":1772079571823,"pid":18636,"hostname":"Mr-Thakur-Skull","req":{"id":"ea9f4a44-f4a0-4be3-a59e-b405c05213fa","method":"GET","url":"/api/health","query":{},"headers":{"user-agent":"Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.7705","host":"localhost:4000","connection":"Keep-Alive"},"remoteAddress":"127.0.0.1","remotePort":64314},"res":{"statusCode":200,"headers":{"x-request-id":"ea9f4a44-f4a0-4be3-a59e-b405c05213fa","content-security-policy":"default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=15552000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":150,"x-ratelimit-remaining":149,"x-ratelimit-reset":60,"content-type":"application/json; charset=utf-8","content-length":"11"}},"responseTime":2,"msg":"request completed"}
+[api] {"level":30,"time":1772079579924,"pid":18636,"hostname":"Mr-Thakur-Skull","req":{"id":"614f99bf-3fe1-4c26-96a1-cfc58dca808a","method":"GET","url":"/api/health","query":{},"headers":{"host":"localhost:4000","user-agent":"curl/8.16.0","accept":"*/*"},"remoteAddress":"127.0.0.1","remotePort":59147},"res":{"statusCode":200,"headers":{"x-request-id":"614f99bf-3fe1-4c26-96a1-cfc58dca808a","content-security-policy":"default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=15552000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":150,"x-ratelimit-remaining":148,"x-ratelimit-reset":52,"content-type":"application/json; charset=utf-8","content-length":"11"}},"responseTime":1,"msg":"request completed"}
+[api] {"level":30,"time":1772079588514,"pid":18636,"hostname":"Mr-Thakur-Skull","req":{"id":"62c3e7f0-c7f7-4d1c-8299-9c8a55addc66","method":"GET","url":"/api/health","query":{},"headers":{"host":"localhost:4000","connection":"keep-alive","accept":"*/*","accept-language":"*","sec-fetch-mode":"cors","user-agent":"node","accept-encoding":"gzip, deflate"},"remoteAddress":"127.0.0.1","remotePort":60283},"res":{"statusCode":200,"headers":{"x-request-id":"62c3e7f0-c7f7-4d1c-8299-9c8a55addc66","content-security-policy":"default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=15552000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":150,"x-ratelimit-remaining":147,"x-ratelimit-reset":44,"content-type":"application/json; charset=utf-8","content-length":"11"}},"responseTime":1,"msg":"request completed"}
+[api] {"level":30,"time":1772079588986,"pid":18636,"hostname":"Mr-Thakur-Skull","req":{"id":"07daaf6b-8534-41b9-a147-e3690d6ee62a","method":"POST","url":"/api/admin/seed?demo=true","query":{"demo":"true"},"headers":{"host":"localhost:4000","connection":"keep-alive","x-admin-seed-token":"local_seed_token","accept":"*/*","accept-language":"*","sec-fetch-mode":"cors","user-agent":"node","accept-encoding":"gzip, deflate","content-length":"0"},"remoteAddress":"127.0.0.1","remotePort":60285},"res":{"statusCode":201,"headers":{"x-request-id":"07daaf6b-8534-41b9-a147-e3690d6ee62a","content-security-policy":"default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=15552000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":150,"x-ratelimit-remaining":146,"x-ratelimit-reset":44,"content-type":"application/json; charset=utf-8","content-length":"432"}},"responseTime":442,"msg":"request completed"}
+[api] {"level":30,"time":1772079589147,"pid":18636,"hostname":"Mr-Thakur-Skull","req":{"id":"3309672d-4d37-4a88-aba4-b37e6bf72f9c","method":"POST","url":"/api/demo/login","query":{},"headers":{"host":"localhost:4000","connection":"keep-alive","content-type":"application/json","accept":"*/*","accept-language":"*","sec-fetch-mode":"cors","user-agent":"node","accept-encoding":"gzip, deflate","content-length":"53"},"remoteAddress":"127.0.0.1","remotePort":60283},"res":{"statusCode":201,"headers":{"x-request-id":"3309672d-4d37-4a88-aba4-b37e6bf72f9c","content-security-policy":"default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=15552000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":150,"x-ratelimit-remaining":145,"x-ratelimit-reset":43,"content-type":"application/json; charset=utf-8","content-length":"429"}},"responseTime":156,"msg":"request completed"}
+[api] {"level":30,"time":1772079589169,"pid":18636,"hostname":"Mr-Thakur-Skull","req":{"id":"315a6dc1-8f28-45ef-bf6d-3c9d44b35679","method":"GET","url":"/api/alerts?status=OPEN&range=30d","query":{"status":"OPEN","range":"30d"},"headers":{"host":"localhost:4000","connection":"keep-alive","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbW0yeDZtd3YwMDAyNXEyZXptdWdzb3E3IiwidGVuYW50SWQiOiJjbW0yeDZtZjMwMDAwNXEyZW9jNTd6NnFiIiwicm9sZSI6Ik9XTkVSIiwiZW1haWwiOiJkZW1vQHBoYXJvcy5sb2NhbCIsImlhdCI6MTc3MjA3OTU4OSwiZXhwIjoxNzcyMTY1OTg5fQ.EV5S2Y3sqtqpoGqGTMgEBJA8wSEv81KqOrzm0KVNrpQ","accept":"*/*","accept-language":"*","sec-fetch-mode":"cors","user-agent":"node","accept-encoding":"gzip, deflate"},"remoteAddress":"127.0.0.1","remotePort":60285},"res":{"statusCode":200,"headers":{"x-request-id":"315a6dc1-8f28-45ef-bf6d-3c9d44b35679","content-security-policy":"default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=15552000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":150,"x-ratelimit-remaining":144,"x-ratelimit-reset":43,"content-type":"application/json; charset=utf-8","content-length":"22674"}},"responseTime":20,"msg":"request completed"}
+[api] {"level":30,"time":1772079589178,"pid":18636,"hostname":"Mr-Thakur-Skull","req":{"id":"0fb37096-5916-4727-95db-05cebd71ded6","method":"GET","url":"/api/tasks?mine=true","query":{"mine":"true"},"headers":{"host":"localhost:4000","connection":"keep-alive","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbW0yeDZtd3YwMDAyNXEyZXptdWdzb3E3IiwidGVuYW50SWQiOiJjbW0yeDZtZjMwMDAwNXEyZW9jNTd6NnFiIiwicm9sZSI6Ik9XTkVSIiwiZW1haWwiOiJkZW1vQHBoYXJvcy5sb2NhbCIsImlhdCI6MTc3MjA3OTU4OSwiZXhwIjoxNzcyMTY1OTg5fQ.EV5S2Y3sqtqpoGqGTMgEBJA8wSEv81KqOrzm0KVNrpQ","accept":"*/*","accept-language":"*","sec-fetch-mode":"cors","user-agent":"node","accept-encoding":"gzip, deflate"},"remoteAddress":"127.0.0.1","remotePort":60283},"res":{"statusCode":200,"headers":{"x-request-id":"0fb37096-5916-4727-95db-05cebd71ded6","content-security-policy":"default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=15552000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":150,"x-ratelimit-remaining":143,"x-ratelimit-reset":43,"content-type":"application/json; charset=utf-8","content-length":"2"}},"responseTime":5,"msg":"request completed"}
+[web]  ✓ Compiled /_error in 1010ms (526 modules)
+[web]  ○ Compiling /_not-found ...
+[web]  ✓ Compiled /_not-found in 3.2s (1173 modules)
+[web]  GET /app/dashboard 500 in 3207ms
+[web]  ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[web]  GET /_next/static/webpack/0169a71006f3d29a.webpack.hot-update.json 500 in 3242ms
+[web]  GET /_next/static/chunks/fallback/webpack.js 500 in 43ms
+[web]  GET /_next/static/chunks/fallback/react-refresh.js 500 in 40ms
+[web]  GET /_next/static/chunks/fallback/main.js 500 in 39ms
+[web]  GET /_next/static/chunks/fallback/pages/_app.js 500 in 16ms
+[web]  GET /_next/static/chunks/fallback/pages/_error.js 500 in 17ms
+[web]  GET /.well-known/appspecific/com.chrome.devtools.json 500 in 14ms
+[api] {"level":30,"time":1772079752767,"pid":18636,"hostname":"Mr-Thakur-Skull","req":{"id":"380971a3-1cfa-4c42-8c23-ba43305816a3","method":"GET","url":"/api/health","query":{},"headers":{"host":"localhost:4000","user-agent":"curl/8.16.0","accept":"*/*"},"remoteAddress":"127.0.0.1","remotePort":55790},"res":{"statusCode":200,"headers":{"x-request-id":"380971a3-1cfa-4c42-8c23-ba43305816a3","content-security-policy":"default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=15552000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":150,"x-ratelimit-remaining":149,"x-ratelimit-reset":60,"content-type":"application/json; charset=utf-8","content-length":"11"}},"responseTime":0,"msg":"request completed"}
+[api] {"level":30,"time":1772079802329,"pid":18636,"hostname":"Mr-Thakur-Skull","req":{"id":"cb10bb95-767c-4ff6-a02b-6625461ead8f","method":"GET","url":"/api/health","query":{},"headers":{"host":"localhost:4000","user-agent":"curl/8.16.0","accept":"*/*"},"remoteAddress":"127.0.0.1","remotePort":63593},"res":{"statusCode":200,"headers":{"x-request-id":"cb10bb95-767c-4ff6-a02b-6625461ead8f","content-security-policy":"default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests","cross-origin-opener-policy":"same-origin","cross-origin-resource-policy":"same-origin","origin-agent-cluster":"?1","referrer-policy":"no-referrer","strict-transport-security":"max-age=15552000; includeSubDomains","x-content-type-options":"nosniff","x-dns-prefetch-control":"off","x-download-options":"noopen","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-xss-protection":"0","vary":"Origin","access-control-allow-credentials":"true","x-ratelimit-limit":150,"x-ratelimit-remaining":148,"x-ratelimit-reset":11,"content-type":"application/json; charset=utf-8","content-length":"11"}},"responseTime":1,"msg":"request completed"}
+[api] C:\Users\Mayank\OneDrive - Mayank Thakur\Desktop\PharOS — Margin Defense\pharos-v1\apps\api:
+[api]  ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @pharos/api@1.0.0 dev: `node -r dotenv/config -r ts-node/register/transpile-only -r tsconfig-paths/register src/main.ts`
+[api] Exit status 1
+[web] [?25h
+[api]  ELIFECYCLE  Command failed with exit code 1.
+[api] corepack pnpm dev:api exited with code 1
+--> Sending SIGTERM to other processes..
+[web] corepack pnpm dev:web exited with code 0
+--> Sending SIGTERM to other processes..
+[worker] corepack pnpm dev:worker exited with code 1
+ ELIFECYCLE  Command failed with exit code 1.
+ ELIFECYCLE  Command failed with exit code 1.

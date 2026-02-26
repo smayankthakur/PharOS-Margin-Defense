@@ -1,9 +1,7 @@
-const api = process.env.API_URL ?? "http://localhost:4000";
-const seedToken = process.env.ADMIN_SEED_TOKEN;
+import { apiEnv } from "@/env";
 
-if (!seedToken) {
-  throw new Error("ADMIN_SEED_TOKEN is required");
-}
+const api = apiEnv.API_URL;
+const seedToken = apiEnv.ADMIN_SEED_TOKEN;
 
 const run = async (): Promise<void> => {
   const response = await fetch(`${api}/api/admin/seed?demo=true`, {

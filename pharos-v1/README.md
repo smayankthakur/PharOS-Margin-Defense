@@ -4,123 +4,146 @@ Margin Defense / Price Intelligence OS for B2B distributors.
 
 ## Architecture
 
-Monorepo (pnpm + turbo):
 - `apps/web`: Next.js App Router + NextAuth Credentials + Tailwind
-- `apps/api`: NestJS (Fastify) REST API
-- `apps/worker`: BullMQ worker for alert generation
+- `apps/api`: NestJS + Fastify REST API
+- `apps/worker`: BullMQ worker (15-minute alert scan)
 - `packages/db`: Prisma schema/client
-- `packages/shared`: zod schemas + pricing math
-- `packages/ui`: shared UI tokens
+- `packages/shared`: shared zod + pricing math
+- `packages/ui`: shared UI primitives/tokens
 
-Data flow:
-1. Web authenticates via `POST /api/auth/login` through NextAuth Credentials.
-2. API issues JWT with `{ userId, tenantId, role }` claims.
-3. Web calls API only (no direct DB access).
-4. Worker runs every 15 minutes to generate MAP/MRP/UNDERCUT/DEAD_STOCK alerts.
+Auth flow:
+- Web uses NextAuth Credentials.
+- NextAuth server-side `authorize()` calls API (`/api/auth/login` or `/api/demo/login`).
+- API returns JWT token + tenant/role claims.
+- Web server calls API with bearer token from session.
 
-## Local Run
+## Local Setup
 
-1. Install dependencies:
+1. Install deps:
 ```bash
 corepack pnpm install
 ```
 
-2. Start infra:
-```bash
-docker compose up -d
-```
-
-3. Copy envs:
-- Copy app env examples:
+2. Create env files:
 ```bash
 cp apps/web/.env.local.example apps/web/.env.local
 cp apps/api/.env.example apps/api/.env
 cp apps/worker/.env.example apps/worker/.env
 ```
-- `.env.local` is gitignored; do not commit secrets.
 
-4. Generate/migrate DB:
+3. Start full stack:
 ```bash
-corepack pnpm --filter @pharos/db db:generate
+corepack pnpm dev
+```
+
+4. Run migrations (if needed):
+```bash
 corepack pnpm db:migrate
 ```
 
-5. Start all apps:
-```bash
-corepack pnpm dev
-```
-
-6. Seed deterministic demo tenant:
-```bash
-corepack pnpm db:seed
-```
-
-## Scripts
+## Commands
 
 ```bash
 corepack pnpm dev
-corepack pnpm build
 corepack pnpm lint
-corepack pnpm test
 corepack pnpm typecheck
+corepack pnpm test
+corepack pnpm build
+corepack pnpm smoke
 corepack pnpm db:migrate
 corepack pnpm db:seed
 ```
+
+## Deployment Runbook
+
+### Vercel (Web)
+
+- Project root directory: `apps/web`
+- Build command: `corepack pnpm --filter @pharos/web build`
+- Install command: `corepack pnpm install --frozen-lockfile`
+- Required env vars:
+  - `NODE_ENV=production`
+  - `NEXTAUTH_SECRET`
+  - `NEXTAUTH_URL=https://<vercel-domain>`
+  - `API_URL=https://<render-api-domain>`
+  - `NEXT_PUBLIC_API_URL=https://<render-api-domain>`
+  - `ADMIN_SEED_TOKEN` (server-only)
+  - `DEMO_EMAIL` (server-only)
+  - `DEMO_PASSWORD` (server-only)
+
+### Render (API Web Service)
+
+- Use `render.yaml` service: `pharos-api`
+- Health check: `/health`
+- Build command:
+  - `corepack enable && corepack pnpm install --frozen-lockfile && corepack pnpm --filter @pharos/db db:generate && corepack pnpm --filter @pharos/api build`
+- Start command:
+  - `corepack pnpm --filter @pharos/api start`
+- Required env vars:
+  - `NODE_ENV=production`
+  - `PORT` (provided by Render)
+  - `DATABASE_URL`
+  - `REDIS_URL`
+  - `CORS_ORIGIN=https://<vercel-domain>`
+  - `ADMIN_SEED_TOKEN`
+  - `RATE_LIMIT_BACKEND=redis`
+  - `JWT_SECRET`
+  - `API_URL=https://<render-api-domain>`
+  - `LOG_LEVEL=info`
+
+### Render (Worker Background Service)
+
+- Use `render.yaml` service: `pharos-worker`
+- Build command:
+  - `corepack enable && corepack pnpm install --frozen-lockfile && corepack pnpm --filter @pharos/db db:generate && corepack pnpm --filter @pharos/worker build`
+- Start command:
+  - `corepack pnpm --filter @pharos/worker start`
+- Required env vars:
+  - `NODE_ENV=production`
+  - `DATABASE_URL`
+  - `REDIS_URL`
+  - `RATE_LIMIT_BACKEND=redis`
+  - `LOG_LEVEL=info`
+
+## Database Migration Procedure
+
+- Local/dev:
+```bash
+corepack pnpm db:migrate
+```
+
+- Production (Render release command or manual):
+```bash
+corepack pnpm --filter @pharos/db db:deploy
+```
+
+Migrations are forward-only.
 
 ## Smoke Test Checklist
 
-- [ ] `GET /api/health` returns `{ ok: true }`
-- [ ] Login works for seeded users (`owner@demo.pharos`, etc)
-- [ ] `/app/dashboard` loads KPI cards and breach trend
-- [ ] `/app/alerts` filters by status/type/severity/range/search
-- [ ] `/app/alerts/:id` shows rule + math + timeline + evidence
-- [ ] `/app/tasks` shows mine/all and status updates
-- [ ] Worker creates deduped alerts on seeded data (>=10)
-- [ ] Tenant isolation: user from tenant A cannot read tenant B records
+- [ ] `GET /health` returns `{ ok: true }`
+- [ ] `POST /api/admin/seed?demo=true` with `x-admin-seed-token` succeeds
+- [ ] `POST /api/demo/login` succeeds with demo credentials
+- [ ] `GET /api/alerts?status=OPEN&range=30d` succeeds with bearer token
+- [ ] `GET /api/tasks?mine=true` succeeds with bearer token
+- [ ] `corepack pnpm smoke` passes
 
 ## Demo Script (Client)
 
-1. Open `/demo`.
-2. Click **Reset Demo Data**.
-3. Click **Enter Demo**.
-4. On dashboard:
-- Show Revenue Leak, MAP, and MRP KPI cards.
-- Show undercut and dead stock risk cards.
-- Show breach trend and top breaches list.
-5. Click a top breach row to open `/app/alerts/:id`.
-6. On alert detail, show rule, evidence, create a task, and update alert status.
-7. Open `/app/tasks`, switch My/All (Owner/Ops), and update task status.
+1. Open `/demo`
+2. Click `Reset Demo Data`
+3. Click `Enter Demo`
+4. On dashboard, show KPI cards (Revenue Leak / MAP / MRP)
+5. Open top breach row to `/app/alerts/[id]`
+6. Create a task on the alert detail page
+7. Change alert status to `ACK` or `RESOLVED`
 
-## Deployment Notes
+## Rollback Plan
 
-### Vercel (`apps/web`)
-- Root Directory: `apps/web`
-- Install Command: `corepack pnpm install --frozen-lockfile`
-- Build Command: `corepack pnpm --filter @pharos/web build`
-- Start Command: `corepack pnpm --filter @pharos/web start`
-- Env vars: `NEXTAUTH_SECRET`, `NEXTAUTH_URL`, `API_URL`
-
-### Render API (Web Service)
-- Root Directory: repo root
-- Build Command: `corepack pnpm install --frozen-lockfile && corepack pnpm --filter @pharos/api build`
-- Start Command: `corepack pnpm --filter @pharos/api start`
-- Env vars: `DATABASE_URL`, `REDIS_URL`, `CORS_ORIGIN`, `JWT_SECRET`, `ADMIN_SEED_TOKEN`, `RATE_LIMIT_BACKEND`, `API_PORT`, `LOG_LEVEL`
-
-### Render Worker (Background Worker)
-- Root Directory: repo root
-- Build Command: `corepack pnpm install --frozen-lockfile && corepack pnpm --filter @pharos/worker build`
-- Start Command: `corepack pnpm --filter @pharos/worker start`
-- Env vars: `DATABASE_URL`, `REDIS_URL`, `LOG_LEVEL`
-
-## Required Env Vars
-
-- `DATABASE_URL`
-- `REDIS_URL`
-- `NEXTAUTH_SECRET`
-- `NEXTAUTH_URL`
-- `API_URL`
-- `CORS_ORIGIN`
-- `ADMIN_SEED_TOKEN`
-- `DEMO_EMAIL`
-- `DEMO_PASSWORD`
-- `RATE_LIMIT_BACKEND=redis|memory`
+- Web rollback: redeploy previous Vercel build.
+- API/Worker rollback: redeploy previous Render revision.
+- Keep DB migrations forward-only; do not roll back migration files in production.
+- If deploy fails after migration:
+  - roll back app services first,
+  - apply a corrective forward migration,
+  - redeploy fixed services.

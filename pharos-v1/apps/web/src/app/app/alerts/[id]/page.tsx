@@ -1,4 +1,5 @@
 import { revalidatePath } from "next/cache";
+import { getServerEnv } from "@/env";
 import { apiFetch, requireSession } from "@/lib/api";
 
 type AlertDetail = {
@@ -29,7 +30,7 @@ async function patchAlertStatus(formData: FormData) {
   const role = session.user.role ?? "VIEWER";
   if (role === "VIEWER") return;
 
-  const response = await fetch(`${process.env.API_URL}/api/alerts/${formData.get("id")}`, {
+  const response = await fetch(`${getServerEnv().API_URL}/api/alerts/${formData.get("id")}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -51,7 +52,7 @@ async function createLinkedTask(formData: FormData) {
   const role = session.user.role ?? "VIEWER";
   if (role === "VIEWER") return;
 
-  const response = await fetch(`${process.env.API_URL}/api/tasks`, {
+  const response = await fetch(`${getServerEnv().API_URL}/api/tasks`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

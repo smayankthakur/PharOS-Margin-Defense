@@ -4,6 +4,7 @@ import { prisma, Role } from "@pharos/db";
 import { LoginSchema } from "@pharos/shared";
 import argon2 from "argon2";
 import { ZodValidationPipe } from "@/common/zod.pipe";
+import { apiEnv } from "@/env";
 
 @Controller("demo")
 export class DemoController {
@@ -11,7 +12,7 @@ export class DemoController {
 
   @Post("seed")
   async seedDemo(@Query("demo") demo = "true") {
-    if (process.env.NODE_ENV === "production") {
+    if (apiEnv.NODE_ENV === "production") {
       throw new ForbiddenException("Demo seed endpoint is disabled in production");
     }
     if (demo !== "true") {
@@ -30,9 +31,8 @@ export class DemoController {
       create: { tenantId: tenant.id, email: "demo@pharos.local", role: Role.OWNER, passwordHash },
     });
 
-    const apiPort = process.env.API_PORT ?? "4000";
-    const apiBaseUrl = process.env.API_URL ?? `http://localhost:${apiPort}`;
-    const seedToken = process.env.ADMIN_SEED_TOKEN;
+    const apiBaseUrl = apiEnv.API_URL;
+    const seedToken = apiEnv.ADMIN_SEED_TOKEN;
     if (!seedToken) {
       return { ok: true };
     }

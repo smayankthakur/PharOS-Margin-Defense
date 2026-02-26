@@ -1,6 +1,6 @@
 import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { DEMO_EMAIL, DEMO_PASSWORD } from "@/lib/demo-credentials";
+import { getServerEnv } from "@/env";
 
 type ApiLoginResponse = {
   token: string;
@@ -21,9 +21,7 @@ type AppUser = {
 };
 
 function resolveApiUrl(): string {
-  if (process.env.API_URL) return process.env.API_URL;
-  if (process.env.NODE_ENV === "development") return "http://localhost:4000";
-  throw new Error("API_URL is missing in production");
+  return getServerEnv().API_URL;
 }
 
 async function readErrorMessage(response: Response): Promise<string> {
@@ -45,7 +43,8 @@ async function readErrorMessage(response: Response): Promise<string> {
 }
 
 export const authOptions: NextAuthOptions = {
-  ...(process.env.NEXTAUTH_SECRET ? { secret: process.env.NEXTAUTH_SECRET } : {}),
+  secret: getServerEnv().NEXTAUTH_SECRET,
+  useSecureCookies: process.env.NODE_ENV === "production",
   session: { strategy: "jwt" },
   pages: { signIn: "/login" },
   providers: [
@@ -57,14 +56,21 @@ export const authOptions: NextAuthOptions = {
           throw new Error("missing credentials");
         }
 
+        const env = getServerEnv();
         const apiUrl = resolveApiUrl();
-        const isDemo = credentials.email.toLowerCase() === DEMO_EMAIL.toLowerCase() && credentials.password === DEMO_PASSWORD;
+        const demoAlias = credentials.email === "__DEMO__" && credentials.password === "__DEMO__";
+        const loginEmail = demoAlias ? env.DEMO_EMAIL : credentials.email;
+        const loginPassword = demoAlias ? env.DEMO_PASSWORD : credentials.password;
+        if (!loginEmail || !loginPassword) {
+          throw new Error("missing credentials");
+        }
+        const isDemo = loginEmail.toLowerCase() === env.DEMO_EMAIL.toLowerCase();
         const endpoint = isDemo ? "/api/demo/login" : "/api/auth/login";
 
         const response = await fetch(`${apiUrl}${endpoint}`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: credentials.email, password: credentials.password }),
+          body: JSON.stringify({ email: loginEmail, password: loginPassword }),
         });
 
         if (!response.ok) {

@@ -1,4 +1,5 @@
 import { revalidatePath } from "next/cache";
+import { getServerEnv } from "@/env";
 import { apiFetch, requireSession } from "@/lib/api";
 
 type TaskRow = {
@@ -30,7 +31,7 @@ async function createTaskAction(formData: FormData) {
   const role = session.user.role ?? "VIEWER";
   if (role === "VIEWER") return;
 
-  const response = await fetch(`${process.env.API_URL}/api/tasks`, {
+  const response = await fetch(`${getServerEnv().API_URL}/api/tasks`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -55,7 +56,7 @@ async function patchTaskStatusAction(formData: FormData) {
   const role = session.user.role ?? "VIEWER";
   if (role === "VIEWER") return;
 
-  const response = await fetch(`${process.env.API_URL}/api/tasks/${formData.get("taskId")}`, {
+  const response = await fetch(`${getServerEnv().API_URL}/api/tasks/${formData.get("taskId")}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",

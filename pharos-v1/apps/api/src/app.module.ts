@@ -2,6 +2,7 @@ import { Module } from "@nestjs/common";
 import { APP_GUARD } from "@nestjs/core";
 import { JwtModule } from "@nestjs/jwt";
 import { LoggerModule } from "nestjs-pino";
+import { apiEnv } from "./env";
 import { AuthController } from "./auth/auth.controller";
 import { AuthService } from "./auth/auth.service";
 import { JwtAuthGuard } from "./common/jwt-auth.guard";
@@ -19,9 +20,9 @@ import { TasksController } from "./modules/tasks.controller";
 
 @Module({
   imports: [
-    LoggerModule.forRoot({ pinoHttp: { level: process.env.LOG_LEVEL ?? "info" } }),
+    LoggerModule.forRoot({ pinoHttp: { level: apiEnv.LOG_LEVEL } }),
     JwtModule.register({
-      secret: process.env.JWT_SECRET ?? "dev-secret",
+      secret: apiEnv.JWT_SECRET,
       signOptions: { expiresIn: "1d" },
     }),
   ],

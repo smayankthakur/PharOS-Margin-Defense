@@ -1,4 +1,5 @@
 import { revalidatePath } from "next/cache";
+import { getServerEnv } from "@/env";
 import { apiFetch, requireSession } from "@/lib/api";
 
 type AlertRow = {
@@ -45,7 +46,7 @@ async function patchTaskStatus(formData: FormData) {
   const session = await requireSession();
   if (session.user.role === "VIEWER") return;
 
-  const response = await fetch(`${process.env.API_URL}/api/tasks/${formData.get("taskId")}`, {
+  const response = await fetch(`${getServerEnv().API_URL}/api/tasks/${formData.get("taskId")}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",

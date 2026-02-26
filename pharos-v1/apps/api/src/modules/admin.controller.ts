@@ -1,18 +1,37 @@
-import { BadRequestException, Controller, Headers, Post, Query } from "@nestjs/common";
+import { BadRequestException, Controller, Headers, HttpException, HttpStatus, Logger, Post, Query } from "@nestjs/common";
 import { prisma, Role } from "@pharos/db";
 import argon2 from "argon2";
 import { generateAlertsForTenant } from "./alert-engine";
+import { apiEnv } from "@/env";
+
+const seedRateWindowMs = 15_000;
+const seedLastRequestByKey = new Map<string, number>();
 
 @Controller("admin")
 export class AdminController {
+  private readonly logger = new Logger(AdminController.name);
+
   @Post("seed")
-  async seedDemo(@Query("demo") demo: string, @Headers("x-admin-seed-token") token?: string) {
+  async seedDemo(
+    @Query("demo") demo: string,
+    @Headers("x-admin-seed-token") token?: string,
+    @Headers("x-forwarded-for") forwardedFor?: string,
+  ) {
     if (demo !== "true") {
       throw new BadRequestException("Only demo=true is supported");
     }
-    if (!process.env.ADMIN_SEED_TOKEN || token !== process.env.ADMIN_SEED_TOKEN) {
+    if (token !== apiEnv.ADMIN_SEED_TOKEN) {
       throw new BadRequestException("Invalid admin seed token");
     }
+
+    const requesterKey = `${forwardedFor ?? "unknown"}:${token?.slice(0, 6) ?? "none"}`;
+    const nowMs = Date.now();
+    const last = seedLastRequestByKey.get(requesterKey);
+    if (last && nowMs - last < seedRateWindowMs) {
+      throw new HttpException("Seed endpoint rate limit exceeded", HttpStatus.TOO_MANY_REQUESTS);
+    }
+    seedLastRequestByKey.set(requesterKey, nowMs);
+    this.logger.log(`demo seed requested requester=${requesterKey}`);
 
     const tenant = await prisma.tenant.upsert({
       where: { slug: "demo" },

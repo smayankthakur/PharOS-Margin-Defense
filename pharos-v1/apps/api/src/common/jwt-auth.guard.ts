@@ -1,5 +1,6 @@
 import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
+import { apiEnv } from "@/env";
 
 type AuthPayload = {
   sub: string;
@@ -17,6 +18,7 @@ export class JwtAuthGuard implements CanActivate {
     const url = String(req.url ?? "");
 
     if (
+      url.includes("/health") ||
       url.includes("/api/health") ||
       (req.method === "POST" && url.includes("/api/auth/login")) ||
       (req.method === "POST" && url.includes("/api/admin/seed")) ||
@@ -35,7 +37,7 @@ export class JwtAuthGuard implements CanActivate {
     let payload: AuthPayload;
     try {
       payload = await this.jwtService.verifyAsync(token, {
-        secret: process.env.JWT_SECRET ?? "dev-secret",
+        secret: apiEnv.JWT_SECRET,
       });
     } catch {
       throw new UnauthorizedException("Invalid token");

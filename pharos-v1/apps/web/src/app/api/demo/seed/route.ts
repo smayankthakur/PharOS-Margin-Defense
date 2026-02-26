@@ -1,12 +1,21 @@
 import { NextResponse } from "next/server";
+import { getServerEnv } from "@/env";
+
+export async function HEAD() {
+  const { API_URL: apiUrl } = getServerEnv();
+  try {
+    const response = await fetch(`${apiUrl}/health`, { method: "GET", cache: "no-store" });
+    if (!response.ok) {
+      return new Response(null, { status: response.status, statusText: response.statusText });
+    }
+    return new Response(null, { status: 200 });
+  } catch {
+    return new Response(null, { status: 502, statusText: "API unreachable" });
+  }
+}
 
 export async function POST() {
-  const apiUrl = process.env.API_URL;
-  const seedToken = process.env.ADMIN_SEED_TOKEN;
-
-  if (!apiUrl || !seedToken) {
-    return NextResponse.json({ ok: false, error: "Demo seed env is not configured" }, { status: 500 });
-  }
+  const { API_URL: apiUrl, ADMIN_SEED_TOKEN: seedToken } = getServerEnv();
 
   let response: Response;
   try {

@@ -2,13 +2,10 @@
 
 import { getSession, signIn } from "next-auth/react";
 import { useState } from "react";
-import { DEMO_EMAIL, DEMO_PASSWORD } from "@/lib/demo-credentials";
-import { API_BASE_URL, getApiBaseUrlError } from "@/lib/env";
 
 type Notice = { kind: "ok" | "error"; text: string } | null;
 
 type SeedResult = { ok: true } | { ok: false; error: string };
-type DemoLoginResult = { ok: true; token: string } | { ok: false; error: string };
 
 function formatHttpError(status: number, statusText: string, detail?: string): string {
   const suffix = detail ? ` | ${detail}` : "";
@@ -34,23 +31,14 @@ async function readResponseBody(response: Response): Promise<string | undefined>
 }
 
 async function assertBackendHealthy(): Promise<SeedResult> {
-  if (!API_BASE_URL) {
-    return { ok: false, error: getApiBaseUrlError() ?? "NEXT_PUBLIC_API_URL is required in production." };
-  }
-
   try {
-    const healthResponse = await fetch(`${API_BASE_URL}/api/health`, { method: "GET" });
+    const healthResponse = await fetch("/api/demo/seed", { method: "HEAD" });
     if (!healthResponse.ok) {
       const detail = await readResponseBody(healthResponse);
       return {
         ok: false,
         error: `${formatHttpError(healthResponse.status, healthResponse.statusText, detail)}. Backend not running. Start with: pnpm dev`,
       };
-    }
-
-    const body = (await healthResponse.json()) as { ok?: boolean };
-    if (!body.ok) {
-      return { ok: false, error: "Backend health check failed. Backend not running. Start with: pnpm dev" };
     }
     return { ok: true };
   } catch {
@@ -64,13 +52,9 @@ async function seedDemo(): Promise<SeedResult> {
     return health;
   }
 
-  if (!API_BASE_URL) {
-    return { ok: false, error: getApiBaseUrlError() ?? "NEXT_PUBLIC_API_URL is required in production." };
-  }
-
   let seedResponse: Response;
   try {
-    seedResponse = await fetch(`${API_BASE_URL}/api/demo/seed?demo=true`, { method: "POST" });
+    seedResponse = await fetch("/api/demo/seed", { method: "POST" });
   } catch {
     return { ok: false, error: "Backend not running. Start with: pnpm dev" };
   }
@@ -88,39 +72,6 @@ async function seedDemo(): Promise<SeedResult> {
     return { ok: false, error: seedPayload.error ?? "Seed failed" };
   }
   return { ok: true };
-}
-
-async function loginDemo(): Promise<DemoLoginResult> {
-  if (!API_BASE_URL) {
-    return { ok: false, error: getApiBaseUrlError() ?? "NEXT_PUBLIC_API_URL is required in production." };
-  }
-
-  let response: Response;
-  try {
-    response = await fetch(`${API_BASE_URL}/api/demo/login`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: DEMO_EMAIL, password: DEMO_PASSWORD }),
-    });
-  } catch {
-    return { ok: false, error: "Demo login failed (503): backend unreachable" };
-  }
-
-  if (!response.ok) {
-    const detail = await readResponseBody(response);
-    const message = detail ?? "unknown error";
-    return {
-      ok: false,
-      error: `Demo login failed (${response.status} ${response.statusText}): ${message}`,
-    };
-  }
-
-  const payload = (await response.json()) as { ok?: boolean; token?: string; message?: string };
-  if (!payload.ok || !payload.token) {
-    return { ok: false, error: "Demo login failed (500): invalid server response" };
-  }
-
-  return { ok: true, token: payload.token };
 }
 
 export default function DemoPage() {
@@ -157,19 +108,9 @@ export default function DemoPage() {
                   }
                 }
 
-                const apiLogin = await loginDemo();
-                if (!apiLogin.ok) {
-                  const hint = apiLogin.error.includes("invalid credentials")
-                    ? `${apiLogin.error}. Run Reset Demo Data first.`
-                    : apiLogin.error;
-                  setNotice({ kind: "error", text: hint });
-                  return;
-                }
-                localStorage.setItem("pharosDemoToken", apiLogin.token);
-
                 const result = await signIn("credentials", {
-                  email: DEMO_EMAIL,
-                  password: DEMO_PASSWORD,
+                  email: "__DEMO__",
+                  password: "__DEMO__",
                   redirect: false,
                 });
                 if (!result?.ok) {

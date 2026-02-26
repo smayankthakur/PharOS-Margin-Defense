@@ -18,7 +18,7 @@ corepack pnpm dev
 ## Verify services
 
 ```bash
-curl http://localhost:4000/api/health
+curl http://localhost:4000/health
 ```
 
 Expected:
@@ -37,8 +37,14 @@ Then click:
 ## Demo API checks
 
 ```bash
-curl http://localhost:4000/api/demo/seed -X POST
-curl http://localhost:4000/api/demo/login -X POST -H "Content-Type: application/json" -d '{"email":"demo@pharos.local","password":"Demo@12345"}'
+curl -X POST http://localhost:4000/api/demo/seed
+curl -X POST http://localhost:4000/api/demo/login -H "Content-Type: application/json" -d '{"email":"demo@pharos.local","password":"Demo@12345"}'
+```
+
+## Automated smoke
+
+```bash
+corepack pnpm smoke
 ```
 
 ## Required env files
