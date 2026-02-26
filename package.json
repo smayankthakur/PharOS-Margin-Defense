@@ -3,7 +3,7 @@
   "private": true,
   "packageManager": "pnpm@10.0.0",
   "scripts": {
-    "build": "pnpm --filter @pharos/api build",
+    "build": "pnpm -r build",
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
     "test": "turbo run test",
