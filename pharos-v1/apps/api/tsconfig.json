@@ -9,12 +9,13 @@
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "outDir": "dist",
+    "rootDir": "src",
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@pharos/db": ["../../packages/db/src/index"],
-      "@pharos/shared": ["../../packages/shared/src/index"],
-      "@pharos/shared/*": ["../../packages/shared/src/*"]
+      "@pharos/db": ["../../packages/db/dist/index"],
+      "@pharos/shared": ["../../packages/shared/dist/src/index"],
+      "@pharos/shared/*": ["../../packages/shared/dist/src/*"]
     }
   },
   "include": ["src/**/*.ts"]
