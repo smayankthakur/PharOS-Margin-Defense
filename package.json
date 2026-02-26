@@ -11,6 +11,18 @@
     "db:migrate": "pnpm --filter @pharos/db db:migrate",
     "db:reset": "turbo run db:reset"
   },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@nestjs/core",
+      "@prisma/client",
+      "@prisma/engines",
+      "argon2",
+      "esbuild",
+      "msgpackr-extract",
+      "prisma",
+      "sharp"
+    ]
+  },
   "devDependencies": {
     "turbo": "^2.4.2",
     "typescript": "^5.7.3"
