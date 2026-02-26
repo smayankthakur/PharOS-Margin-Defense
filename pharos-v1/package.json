@@ -2,6 +2,10 @@
   "name": "pharos-v1",
   "private": true,
   "packageManager": "pnpm@10.0.0",
+  "engines": {
+    "node": ">=22.0.0 <23",
+    "pnpm": "10.0.0"
+  },
   "scripts": {
     "dev:infra": "docker compose up -d postgres redis",
     "dev:ports": "kill-port 3000 4000",

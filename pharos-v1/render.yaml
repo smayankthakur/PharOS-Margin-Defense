@@ -5,8 +5,8 @@ services:
     plan: starter
     autoDeploy: true
     rootDir: .
-    buildCommand: corepack enable && corepack pnpm install --frozen-lockfile && corepack pnpm --filter @pharos/db db:generate && corepack pnpm --filter @pharos/api build
-    startCommand: corepack pnpm --filter @pharos/db db:migrate && corepack pnpm --filter @pharos/api start
+    buildCommand: corepack enable && corepack prepare pnpm@10.0.0 --activate && pnpm install --frozen-lockfile && pnpm --filter @pharos/db db:generate && pnpm --filter @pharos/api build
+    startCommand: corepack enable && corepack prepare pnpm@10.0.0 --activate && pnpm --filter @pharos/db db:migrate && pnpm --filter @pharos/api start
     healthCheckPath: /health
     envVars:
       - key: NODE_ENV
@@ -36,8 +36,8 @@ services:
     plan: starter
     autoDeploy: true
     rootDir: .
-    buildCommand: corepack enable && corepack pnpm install --frozen-lockfile && corepack pnpm --filter @pharos/db db:generate && corepack pnpm --filter @pharos/worker build
-    startCommand: corepack pnpm --filter @pharos/worker start
+    buildCommand: corepack enable && corepack prepare pnpm@10.0.0 --activate && pnpm install --frozen-lockfile && pnpm --filter @pharos/db db:generate && pnpm --filter @pharos/worker build
+    startCommand: corepack enable && corepack prepare pnpm@10.0.0 --activate && pnpm --filter @pharos/worker start
     envVars:
       - key: NODE_ENV
         value: production
