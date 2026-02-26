@@ -8,7 +8,7 @@
     "lint": "turbo run lint",
     "test": "turbo run test",
     "db:generate": "turbo run db:generate",
-    "db:migrate": "turbo run db:migrate",
+    "db:migrate": "prisma migrate deploy",
     "db:reset": "turbo run db:reset"
   },
   "devDependencies": {
